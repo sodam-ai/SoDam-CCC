@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SoDam-CCC — Talk to Your Computer From Telegram</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #1c1e21;
+      --muted: #5b6068;
+      --accent: #2563eb;
+      --border: #e2e5e9;
+      --code-bg: #f4f5f7;
+      --quote-bg: #f0f5ff;
+      --table-head: #eef1f5;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16181c;
+        --fg: #e6e8eb;
+        --muted: #9aa1ab;
+        --accent: #6ea8fe;
+        --border: #2c3036;
+        --code-bg: #1f2226;
+        --quote-bg: #1a2233;
+        --table-head: #22262c;
+      }
+    }
+    html { background: var(--bg); }
+    body {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", Roboto, sans-serif;
+      line-height: 1.75;
+      font-size: 16px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    h1, h2, h3 { line-height: 1.35; }
+    h1 {
+      font-size: 1.9rem;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+    }
+    h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+    a { color: var(--accent); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2rem 0; }
+    blockquote {
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      margin: 1.1rem 0;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+    }
+    blockquote p { margin: 0.3rem 0; }
+    code {
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.92em;
+      font-family: "Cascadia Mono", "Consolas", monospace;
+    }
+    pre {
+      background: var(--code-bg);
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+    pre code { background: none; padding: 0; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.1rem 0;
+      display: block;
+      overflow-x: auto;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--table-head); }
+    details {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      margin: 0.7rem 0;
+    }
+    summary { cursor: pointer; font-weight: 600; }
+    .lang-note { color: var(--muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">SoDam-CCC — Talk to Your Computer From Telegram</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sodam-ccc-talk-to-your-computer-from-telegram"
+id="toc-sodam-ccc-talk-to-your-computer-from-telegram">SoDam-CCC — Talk
+to Your Computer From Telegram</a>
+<ul>
+<li><a href="#what-is-this" id="toc-what-is-this">1. What Is
+This?</a></li>
+<li><a href="#table-of-contents" id="toc-table-of-contents">2. Table of
+Contents</a></li>
+<li><a href="#prerequisites-what-you-need-to-have"
+id="toc-prerequisites-what-you-need-to-have">3. Prerequisites (What You
+Need to Have)</a></li>
+<li><a href="#required-programs-what-you-need-to-install"
+id="toc-required-programs-what-you-need-to-install">4. Required Programs
+(What You Need to Install)</a></li>
+<li><a href="#download-installation" id="toc-download-installation">5.
+Download / Installation</a></li>
+<li><a href="#quick-start-check-in-3-minutes"
+id="toc-quick-start-check-in-3-minutes">6. Quick Start (Check in 3
+Minutes)</a></li>
+<li><a href="#how-to-run-it" id="toc-how-to-run-it">7. How to Run
+It</a></li>
+<li><a href="#how-to-use-it-what-to-text-from-your-phone"
+id="toc-how-to-use-it-what-to-text-from-your-phone">8. How to Use It
+(What to Text From Your Phone)</a></li>
+<li><a href="#how-it-works" id="toc-how-it-works">9. How It
+Works</a></li>
+<li><a href="#command-reference" id="toc-command-reference">10. Command
+Reference</a></li>
+<li><a href="#changelog" id="toc-changelog">11. Changelog</a></li>
+<li><a href="#file-document-locations"
+id="toc-file-document-locations">12. File &amp; Document
+Locations</a></li>
+<li><a href="#workflow" id="toc-workflow">13. Workflow</a></li>
+<li><a href="#architecture" id="toc-architecture">14.
+Architecture</a></li>
+<li><a href="#security-data-flow" id="toc-security-data-flow">15.
+Security &amp; Data Flow</a></li>
+<li><a href="#troubleshooting" id="toc-troubleshooting">16.
+Troubleshooting</a></li>
+<li><a href="#faq" id="toc-faq">17. FAQ</a></li>
+<li><a href="#legal-copyright-license-commercial-use"
+id="toc-legal-copyright-license-commercial-use">18. Legal · Copyright ·
+License · Commercial Use</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="sodam-ccc-talk-to-your-computer-from-telegram">SoDam-CCC — Talk
+to Your Computer From Telegram</h1>
+<blockquote>
+<p>🇺🇸 English version. 한국어 기본 문서: <a
+href="./README.md"><code>README.md</code></a> This document is written
+for <strong>people who have never coded before</strong>, and for
+<strong>people using AI, messaging apps, computers, or mobile devices
+for the first time.</strong> Any technical term is explained in one
+plain sentence the first time it appears.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>An honest status note before you read further:</strong> -
+<strong>What has actually been confirmed live on this PC</strong>: the
+full 12-step install flow (marketplace registration → plugin install →
+token registration → pairing → safety lock) has been run in a fresh
+session and confirmed working. <code>/sodam-ccc:status</code> and
+<code>/sodam-ccc:fix</code> have also been run live and confirmed
+working. - <strong>What has NOT been confirmed yet</strong>: an actual
+<strong>round trip — sending a message from the phone and receiving a
+reply</strong> — has not been confirmed end-to-end as of this writing.
+This is not a bug; it’s simply that the verification step (switching to
+a newly created bot mid-project) hasn’t finished yet. - So some “this is
+what success looks like” notes below are <strong>expected behavior based
+on design, code, and official documentation</strong>, clearly
+distinguished from “confirmed 100% identical on an actual phone screen.”
+This note will be removed once confirmed.</p>
+</blockquote>
+<hr />
+<h2 id="what-is-this">1. What Is This?</h2>
+<p><strong>One-sentence summary</strong>: When you send a text message
+from your phone (via the Telegram app), Claude Code (an AI coding
+assistant) running on your computer reads it, does the work, and texts
+you back — this official capability is called <strong>Claude Code
+Channels</strong>. SoDam-CCC is a helper tool that makes
+<strong>first-time setup, re-setup, and troubleshooting</strong> of that
+feature painless.</p>
+<pre><code>[Phone: send &quot;summarize my meeting notes&quot;]
+              │
+              ▼
+   ( through the channel SoDam-CCC helped you set up )
+              │
+              ▼
+[Your computer&#39;s Claude Code does the work]
+              │
+              ▼
+   [Reply arrives back on your phone]</code></pre>
+<p>SoDam-CCC itself is <strong>not</strong> the messaging feature.
+Sending and receiving messages (Claude Code Channels) is an
+<strong>official Anthropic (the maker of Claude Code) feature</strong>.
+SoDam-CCC is an assistant that installs, checks, and repairs that
+official feature for you.</p>
+<h3 id="what-it-can-do">What it can do</h3>
+<ul>
+<li>Check exactly <strong>which of the 12 setup steps</strong> are
+already done.</li>
+<li>Guide you through <strong>only the steps that are missing</strong>,
+in order (never re-asks you to redo a finished step).</li>
+<li>When the bot suddenly goes silent, <strong>check the likely
+causes</strong> and pinpoint the problem.</li>
+<li>Enforce the safety setting (“only approved people can send
+commands”) so it can never be skipped.</li>
+<li>With your consent, <strong>launch and stop</strong> the background
+process that turns the channel on (explained below).</li>
+</ul>
+<h3 id="what-it-cannot-do">What it cannot do</h3>
+<ul>
+<li>It does not install Claude Code itself (Claude Code must already be
+installed and signed in).</li>
+<li>It does not create the Telegram bot for you (that’s a phone-side,
+human-only step).</li>
+<li>It never fills in your bot token (a secret, password-like value) for
+you — <strong>SoDam-CCC never sees, asks for, or stores this
+value.</strong></li>
+</ul>
+<hr />
+<h2 id="table-of-contents">2. Table of Contents</h2>
+<ol type="1">
+<li><a href="#1-what-is-this">What Is This?</a></li>
+<li>Table of Contents (this page)</li>
+<li><a
+href="#3-prerequisites-what-you-need-to-have">Prerequisites</a></li>
+<li><a href="#4-required-programs-what-you-need-to-install">Required
+Programs</a></li>
+<li><a href="#5-download--installation">Download / Installation</a></li>
+<li><a href="#6-quick-start-check-in-3-minutes">Quick Start</a></li>
+<li><a href="#7-how-to-run-it">How to Run It</a></li>
+<li><a href="#8-how-to-use-it-what-to-text-from-your-phone">How to Use
+It</a></li>
+<li><a href="#9-how-it-works">How It Works</a></li>
+<li><a href="#10-command-reference">Command Reference</a></li>
+<li><a href="#11-changelog">Changelog</a></li>
+<li><a href="#12-file--document-locations">File &amp; Document
+Locations</a></li>
+<li><a href="#13-workflow">Workflow</a></li>
+<li><a href="#14-architecture">Architecture</a></li>
+<li><a href="#15-security--data-flow">Security &amp; Data Flow</a></li>
+<li><a href="#16-troubleshooting">Troubleshooting</a></li>
+<li><a href="#17-faq">FAQ</a></li>
+<li><a href="#18-legal--copyright--license--commercial-use">Legal ·
+Copyright · License · Commercial Use</a></li>
+</ol>
+<hr />
+<h2 id="prerequisites-what-you-need-to-have">3. Prerequisites (What You
+Need to Have)</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A smartphone</strong></td>
+<td>Any device that can install the Telegram app (iOS or Android)</td>
+</tr>
+<tr>
+<td><strong>The Telegram app</strong></td>
+<td>A messaging app like KakaoTalk or LINE. Search “Telegram” in your
+app store</td>
+</tr>
+<tr>
+<td><strong>Internet connection</strong></td>
+<td>Both the phone and the PC need to be online</td>
+</tr>
+<tr>
+<td><strong>A powered-on PC</strong></td>
+<td>⚠️ <strong>If the PC is off, phone messages simply
+disappear.</strong> They are not queued for later. See <a
+href="#9-how-it-works">9. How It Works</a> for why</td>
+</tr>
+<tr>
+<td><strong>A paid Claude account</strong></td>
+<td>Claude Pro or Max plan. This document assumes a personal (Pro/Max)
+account</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="required-programs-what-you-need-to-install">4. Required Programs
+(What You Need to Install)</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Program</th>
+<th>What it is</th>
+<th>Why it’s needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td>The AI coding assistant app you run on your PC (in a
+terminal/PowerShell window)</td>
+<td>Everything here runs on top of it. <strong>Assumed already installed
+and signed in</strong> — SoDam-CCC does not help install Claude Code
+itself</td>
+</tr>
+<tr>
+<td><strong>Bun</strong></td>
+<td>A JavaScript runtime (most users just need to know the name)</td>
+<td>The Telegram channel feature runs on top of this internally. If it’s
+missing, <code>/sodam-ccc:install</code> tells you how to install
+it</td>
+</tr>
+<tr>
+<td><strong>The Telegram bot plugin
+(<code>telegram</code>)</strong></td>
+<td>A component provided by Claude Code’s official marketplace</td>
+<td>This is the actual part that sends and receives phone↔︎PC messages.
+<code>/sodam-ccc:install</code> walks you through installing it</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Exact install commands and version numbers can vary (this is still an
+evolving preview feature), so this document doesn’t hard-code them. Run
+<code>/sodam-ccc:install</code> to see exactly what’s missing right
+now.</p>
+</blockquote>
+<hr />
+<h2 id="download-installation">5. Download / Installation</h2>
+<ol type="1">
+<li><p><strong>Inside Claude Code</strong>, type:</p>
+<pre><code>/sodam-ccc:install</code></pre></li>
+<li><p>It checks how many of the 12 steps are already done, then guides
+you through <strong>only what’s missing</strong>.</p></li>
+<li><p>Some steps happen <strong>on your phone</strong> (creating the
+bot, copying the token, pairing). SoDam-CCC always tells you whether a
+step happens “on your phone” or “inside Claude Code.”</p></li>
+<li><p>Installation is only marked “complete” once the safety lock
+(restricting who can send commands) is in place. <strong>This step is
+never skipped</strong> — SoDam-CCC is designed to never say “done” while
+the lock is missing.</p></li>
+</ol>
+<blockquote>
+<p>✅ <strong>This is what success looks like</strong> (by design): at
+every step you’ll see how far along you are (e.g., “7/12 steps”) and
+exactly one next action. Steps already finished are shown briefly as
+“already done” and skipped.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>If you’re asked to choose a plugin scope, always pick
+<code>user</code>.</strong> Picking anything else leads to the “it works
+in one folder but not another” problem (see Troubleshooting #5).</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>If the plugin can’t be found</strong> — your PC may have
+automatic updates turned off. Type
+<code>/plugin marketplace update claude-plugins-official</code>
+<strong>inside Claude Code</strong> once, then try again.
+<code>/sodam-ccc:install</code> checks for this too.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Reinstalling (already have a bot)?</strong> SoDam-CCC
+keeps no history, so it judges purely from what it sees right now. If a
+token is already registered, it won’t ask you to make a new bot — it
+reuses the existing one, cutting hands-on steps down to <strong>3 or
+fewer</strong> (copy token, confirm pairing code, approve pairing). A
+brand-new setup adds “create the bot” on top, for <strong>4 or
+fewer</strong>.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Still stuck?</strong> → <a href="#17-faq">17. FAQ #2</a>
+(bot not replying) or type <code>/sodam-ccc:fix</code> <strong>inside
+Claude Code</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="quick-start-check-in-3-minutes">6. Quick Start (Check in 3
+Minutes)</h2>
+<p>The fastest way to see where you stand right now.</p>
+<ol type="1">
+<li><strong>Inside Claude Code</strong>, type
+<code>/sodam-ccc:status</code> → instantly shows how far along you are
+and what’s left.</li>
+<li>If anything is missing, type <code>/sodam-ccc:install</code>
+<strong>inside Claude Code</strong> → walks you through only what
+remains.</li>
+<li>Once all “N/12 steps” are filled in and the safety lock is on,
+<strong>from your phone’s Telegram, message your bot</strong> — try
+“hello.”</li>
+<li>If you get a reply, you’re done. Silence? → <a href="#17-faq">17.
+FAQ #3</a> or <code>/sodam-ccc:fix</code>.</li>
+</ol>
+<blockquote>
+<p>⏳ As noted at the top of this document, steps 3–4 (the phone round
+trip) haven’t been confirmed end-to-end on this PC yet. Steps 1–2
+(status check, install wizard) have been run multiple times and
+confirmed working.</p>
+</blockquote>
+<hr />
+<h2 id="how-to-run-it">7. How to Run It</h2>
+<p>To receive commands over Telegram, Claude Code needs to be started in
+a <strong>special way</strong> — a regular <code>claude</code> session
+cannot receive phone messages.</p>
+<ul>
+<li><p><strong>In PowerShell</strong> (search “PowerShell” in the
+Windows search bar), type:</p>
+<pre><code>claude --channels plugin:telegram@claude-plugins-official</code></pre></li>
+<li><p>Phone messages are only received <strong>while this session stays
+open.</strong> Closing the window stops it immediately.</p></li>
+<li><p><code>/sodam-ccc:install</code> shows you this exact command
+again whenever this step is needed.</p></li>
+</ul>
+<h3 id="sodam-ccc-can-launch-it-for-you">🤖 SoDam-CCC can launch it for
+you</h3>
+<p>Instead of opening PowerShell and typing the command yourself, you
+can tell <code>/sodam-ccc:install</code> (or
+<code>/sodam-ccc:fix</code>) <strong>inside Claude Code</strong> to
+“turn the channel on,” and SoDam-CCC will: 1. First <strong>check
+whether it’s already running</strong> (it never launches a duplicate —
+two windows fighting over the same bot could conflict with each other).
+2. If it’s not running, show you the exact command it’s about to run and
+<strong>only proceed after you agree</strong>, launching a new
+PowerShell window on your behalf. 3. Keep that window <strong>visible,
+never hidden</strong> — it never runs this silently in the background.
+4. If this PC’s other safeguards block the automatic launch (a normal,
+working second layer of protection), it automatically falls back to
+“please open PowerShell and type this command yourself.”</p>
+<p>The same applies to turning it off — ask SoDam-CCC to close the
+window it opened, and it will do so once you confirm.</p>
+<blockquote>
+<p>✅ <strong>This is what success looks like</strong> (by design): the
+screen looks like a normal Claude Code launch, with no special error
+text.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Turning off the PC or closing this window</strong> makes
+phone messages disappear (<a href="#17-faq">17. FAQ #1</a>).
+<strong>Sent something and got no reply?</strong> → <a
+href="#17-faq">17. FAQ #2–3</a> or run <code>/sodam-ccc:fix</code>.</p>
+</blockquote>
+<hr />
+<h2 id="how-to-use-it-what-to-text-from-your-phone">8. How to Use It
+(What to Text From Your Phone)</h2>
+<p>Once setup is done and the channel is running, just message your bot
+<strong>in plain, natural language</strong> from Telegram on your phone
+— the same way you’d talk to Claude Code directly.</p>
+<pre><code>Examples:
+&quot;What&#39;s the weather like today?&quot;        (your PC&#39;s Claude Code actually does the work)
+&quot;Show me the files I just created&quot;
+&quot;Find the largest file in this folder&quot;</code></pre>
+<h3 id="what-doesnt-work-by-design-not-a-bug">What doesn’t work (by
+design — not a bug)</h3>
+<ul>
+<li><strong>Slash commands don’t work.</strong> Commands like
+<code>/clear</code> or <code>/compact</code> are terminal-only and won’t
+run over the channel (a feature request for this is tracked
+publicly).</li>
+<li><strong>References to past conversations, like “that thing from
+yesterday,” won’t be understood.</strong> Telegram bots cannot look up
+past messages, and context doesn’t carry over between sessions. Just
+restate what you need.</li>
+<li><strong>Replies sometimes look oddly cut off.</strong> This is a
+Telegram message-length limit and can be adjusted (see
+Troubleshooting).</li>
+</ul>
+<h3 id="when-it-asks-for-approval">When it asks for approval</h3>
+<p>When Claude Code wants to do something higher-risk — like running a
+command (<code>Bash</code>) or writing a file (<code>Write</code>) —
+<strong>an approval prompt appears on your PC’s terminal, and the
+session pauses until you respond.</strong> You can approve this from
+your phone: - Tap the <strong>button</strong> that appears in the
+Telegram message, or - Type <code>yes &lt;5-letter code&gt;</code> as
+plain text</p>
+<p>Nothing proceeds until it’s approved. See <a
+href="#15-security--data-flow">15. Security &amp; Data Flow</a> for why
+this matters.</p>
+<hr />
+<h2 id="how-it-works">9. How It Works</h2>
+<pre><code>[Phone: Telegram app]
+       │  type &amp; send a message
+       ▼
+[Telegram&#39;s own servers]   ← belongs to Telegram, not Anthropic or SoDam-CCC
+       │
+       ▼
+[Your PC: Telegram channel plugin]   ← this must be &quot;running&quot; for the next step to happen
+       │  forwards the message
+       ▼
+[Your PC: Claude Code session]        ← must be a session started with `--channels`
+       │  actually does the work
+       │  (asks for phone approval first if it&#39;s a risky action)
+       ▼
+[Your PC: result is generated]
+       │
+       ▼
+[Telegram&#39;s servers] → [Phone: reply arrives in Telegram]</code></pre>
+<p><strong>The single most important fact</strong>: if the middle of
+this chain (your PC) isn’t alive, the whole thing breaks.</p>
+<blockquote>
+<p>⚠️ <strong>If the PC is off, or the window you started with
+<code>--channels</code> is closed, phone messages simply
+vanish.</strong> They are not delivered later when you turn the PC back
+on — the channel wasn’t alive at that moment, so the message was never
+relayed at all. (A feature to keep this always-on is planned for a later
+phase of this project, but doesn’t exist yet.)</p>
+</blockquote>
+<p>SoDam-CCC doesn’t appear anywhere in this diagram — it’s the
+assistant that helps you keep this chain alive by checking your setup,
+not a part of the message path itself.</p>
+<hr />
+<h2 id="command-reference">10. Command Reference</h2>
+<p><strong>Commands you type inside Claude Code (SoDam-CCC)</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/sodam-ccc:install</code></td>
+<td>Install wizard — guides you through only what’s missing, in
+order</td>
+</tr>
+<tr>
+<td><code>/sodam-ccc:status</code></td>
+<td>Checks how far along you are and whether any risky settings
+remain</td>
+</tr>
+<tr>
+<td><code>/sodam-ccc:fix</code></td>
+<td>Checks likely causes when something’s broken and tells you what to
+do</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Official commands, typed inside Claude Code (SoDam-CCC shows
+the exact command and asks for consent before running it, or you type it
+yourself)</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude --channels plugin:telegram@claude-plugins-official</code></td>
+<td>(In PowerShell) starts Claude Code in the special mode that can
+receive channel messages</td>
+</tr>
+<tr>
+<td><code>/plugin marketplace add anthropics/claude-plugins-official</code></td>
+<td>Registers the official marketplace</td>
+</tr>
+<tr>
+<td><code>/plugin marketplace update claude-plugins-official</code></td>
+<td>Refreshes the marketplace catalog (needed when auto-update is
+off)</td>
+</tr>
+<tr>
+<td><code>/plugin install telegram@claude-plugins-official</code></td>
+<td>Installs the Telegram channel plugin (scope must be
+<code>user</code>)</td>
+</tr>
+<tr>
+<td><code>/reload-plugins</code></td>
+<td>Activates the plugin (only needed if prompted right after
+install)</td>
+</tr>
+<tr>
+<td><code>/telegram:configure &lt;token from BotFather&gt;</code></td>
+<td>Registers the bot token — <strong>you fill in and run this
+yourself</strong>; SoDam-CCC never sees this value</td>
+</tr>
+<tr>
+<td><code>/telegram:configure clear</code></td>
+<td>Deletes the registered bot token (resets the bot config)</td>
+</tr>
+<tr>
+<td><code>/telegram:access pair &lt;5-letter code from your phone&gt;</code></td>
+<td>Pairing (connects phone and bot) — <strong>you fill in and run this
+yourself</strong></td>
+</tr>
+<tr>
+<td><code>/telegram:access policy allowlist</code></td>
+<td><strong>The safety lock</strong> — restricts commands to approved
+senders only (the final required step of setup)</td>
+</tr>
+<tr>
+<td><code>/telegram:access set ackReaction 👀</code></td>
+<td>Turns on an automatic “message received” reaction (👀)</td>
+</tr>
+<tr>
+<td><code>/telegram:access remove &lt;id&gt;</code></td>
+<td>Removes a specific person from the allowlist</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What you type from Telegram on your phone</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What to type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An approval request arrives</td>
+<td>Tap the button, or type <code>yes &lt;5-letter code&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>These commands belong to a “research preview” feature and may change.
+If something doesn’t work, try <code>/sodam-ccc:fix</code>.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Only one bot can be connected at a time.</strong>
+Registering a new bot token automatically replaces the existing one
+(running two bots at once isn’t supported by this plugin’s design). To
+switch bots, tell <code>/sodam-ccc:fix</code> “I want to switch bots”
+for guidance.</p>
+</blockquote>
+<hr />
+<h2 id="changelog">11. Changelog</h2>
+<details>
+<summary>
+<b>2026-08-21 — Added automatic channel process launch/restart and bot
+removal flow</b>
+</summary>
+<ul>
+<li>SoDam-CCC can now <strong>launch the channel process</strong>
+(<code>--channels</code>) on your behalf after your consent (with a
+duplicate-run check, and the window always stays visible)</li>
+<li>Added a shared procedure to handle “already running but stale
+config” (e.g., you just swapped bot tokens) — <strong>terminates by
+exact process ID</strong>, never by matching a process name, to avoid
+accidentally killing an unrelated process</li>
+<li>Added guidance for the official steps to <strong>clear</strong> a
+bot token or allowlist entry (<code>/telegram:configure clear</code>,
+<code>/telegram:access remove</code>)</li>
+<li>Fixed a false-positive bug where the security check (detecting risky
+launch flags) matched its own checking command</li>
+<li>Fixed plugin version handling so that
+<code>claude plugin update</code> no longer silently skips real content
+changes</li>
+</ul>
+</details>
+<details>
+<summary>
+2026-08-20 — First live end-to-end test run, safety lock actually
+resolved
+</summary>
+<ul>
+<li>Ran <code>/sodam-ccc:install</code>, <code>/sodam-ccc:status</code>,
+and <code>/sodam-ccc:fix</code> live on this PC for the first time and
+confirmed the check logic works correctly</li>
+<li>The safety lock, which had been left open
+(<code>dmPolicy="pairing"</code>) for a while, was manually switched to
+locked (<code>allowlist</code>) and confirmed by re-checking</li>
+<li>Fixed a bug where file paths were referenced relatively, breaking
+when the plugin ran from its installed cache location</li>
+</ul>
+</details>
+<details>
+<summary>
+2026-08-19 — Fixed a progress-count error
+</summary>
+<ul>
+<li>The 12-step progress counter was incorrectly including “phone
+approval support” (a fact that’s always true and unrelated to actual
+progress), which made progress look further along than it really was.
+Fixed.</li>
+</ul>
+</details>
+<details>
+<summary>
+2026-08-09 — Initial Phase 1 design
+</summary>
+<ul>
+<li>First design of the install wizard, status check, and
+troubleshooting skills</li>
+<li>Established the rule that the safety lock (restricting commands to
+approved senders) can never be skipped</li>
+<li>Designed phone approval and “message received” indicator
+guidance</li>
+<li>Wrote the first version of the 15-check (12 general + 3 security)
+and 11-symptom catalog</li>
+</ul>
+</details>
+<hr />
+<h2 id="file-document-locations">12. File &amp; Document Locations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+<th>How SoDam-CCC treats it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Telegram settings (token, allowlist, pairing state)</td>
+<td><code>&lt;your user folder&gt;\.claude\channels\telegram\</code></td>
+<td>Only checks existence/pass-fail. <strong>Never opens the token file
+(<code>.env</code>) contents</strong></td>
+</tr>
+<tr>
+<td>Claude Code global settings &amp; plugin cache</td>
+<td>The <code>AppData\Roaming\claude-code\</code> folder (or
+<code>.claude</code> folder)</td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td>This project’s detailed technical documents (PRD)</td>
+<td>The <code>.PRD</code> folder</td>
+<td>Regular users don’t need to read this — it’s the design
+documentation used to build SoDam-CCC</td>
+</tr>
+<tr>
+<td>This README (Korean/English, md/html)</td>
+<td>Project root folder</td>
+<td><code>README.md</code> (Korean) · <code>README.en.md</code>
+(English) · <code>README.html</code> · <code>README.en.html</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ Do not open files inside the Telegram settings folder yourself
+(especially <code>.env</code>, which holds the token).
+<code>/sodam-ccc:status</code> checks it safely (without ever opening
+it) and reports back.</p>
+</blockquote>
+<hr />
+<h2 id="workflow">13. Workflow</h2>
+<h3 id="core-flow">Core flow</h3>
+<pre><code>/sodam-ccc:status  →  find out how far along you are
+     │
+     ▼
+/sodam-ccc:install →  only the missing steps, in order
+     │
+     ▼
+Safety lock (allowlist) + phone approval check + received indicator (👀)
+     │
+     ▼
+Text &quot;hello&quot; from your phone → a reply arrives  =  success
+     │
+     ▼
+(if stuck) /sodam-ccc:fix → symptom → cause → fix</code></pre>
+<h3 id="scenarios">Scenarios</h3>
+<p><strong>Scenario A — Starting fresh on a new PC</strong> 1. Claude
+Code is already installed on the new PC 2. Run
+<code>/sodam-ccc:install</code> 3. It checks what you have, guides you
+through what’s missing, step by step (including creating a bot; 4 or
+fewer hands-on steps) 4. Text “hello” from your phone → a reply
+arrives</p>
+<p><strong>Scenario B — Picking up where you left off</strong> 1. You
+started setting this up a while ago and don’t remember how far you got
+2. Run <code>/sodam-ccc:status</code> 3. It tells you exactly where you
+stopped — e.g. “the token is set, only pairing is left” 4. Continue from
+that exact step (reusing the existing bot; 3 or fewer hands-on
+steps)</p>
+<p><strong>Scenario C — Sudden silence</strong> 1. You texted from your
+phone but got no reply 2. Run <code>/sodam-ccc:fix</code> 3. It first
+runs all 15 checks automatically and shows failures first. If that
+doesn’t find the cause, it asks about specific symptoms (“bot isn’t
+replying at all,” etc.) to narrow it down 4. It guides you to the
+matching fix (e.g., “an approval request is waiting on your PC — you can
+approve it from your phone”)</p>
+<h3 id="how-the-install-wizard-sorts-steps-internally-for-reference">How
+the install wizard sorts steps internally (for reference)</h3>
+<p><code>install</code> splits the 12 steps into five categories by
+nature, and never mixes their handling:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Category</th>
+<th>Example steps</th>
+<th>How it’s handled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Read-only</strong></td>
+<td>Checking a result</td>
+<td>Just shows the result. Never asks you to act if there’s nothing to
+do</td>
+</tr>
+<tr>
+<td><strong>Human-only</strong></td>
+<td>Creating the bot, copying the token (skipped on reinstall)</td>
+<td>Guidance only; re-checks once you say it’s done</td>
+</tr>
+<tr>
+<td><strong>Official command with a secret value</strong></td>
+<td>Registering the token, pairing</td>
+<td>Shows only the command template — <strong>you fill in the value and
+run it yourself</strong>; SoDam-CCC never sees the value</td>
+</tr>
+<tr>
+<td><strong>Official command, fixed text</strong></td>
+<td>Registering the marketplace, installing the plugin, the safety
+lock</td>
+<td>Shows the full command and asks for <strong>fresh consent every
+time</strong>, then re-checks after running it</td>
+</tr>
+<tr>
+<td><strong>Channel process launch</strong></td>
+<td>Turning <code>--channels</code> on/off</td>
+<td>Checks for duplicates first → runs only after consent → keeps the
+window visible → confirms via re-check</td>
+</tr>
+</tbody>
+</table>
+<p>The reason for this split is simple: <strong>secret values are never
+touched, and risky actions always get fresh consent.</strong></p>
+<hr />
+<h2 id="architecture">14. Architecture</h2>
+<h3 id="project-structure">Project structure</h3>
+<pre><code>SoDam-CCC/
+├── .PRD/                  # Design documents (requirements, data model, phase plan, etc.)
+├── .claude-plugin/
+│   ├── plugin.json        # Plugin manifest (name, version, description)
+│   └── marketplace.json   # Marketplace catalog (used for installation)
+├── commands/               # Slash command entry points (/sodam-ccc:install, etc.)
+├── skills/
+│   ├── install/SKILL.md   # Install wizard logic
+│   ├── status/SKILL.md    # Status check logic
+│   ├── fix/SKILL.md       # Troubleshooting logic
+│   └── tone/SKILL.md      # Shared beginner-friendly tone rules
+├── data/
+│   ├── checks.md          # The single source of truth for all 15 CHECK definitions
+│   └── symptoms.md        # The 11-symptom troubleshooting catalog
+└── README.md               # This document</code></pre>
+<h3 id="trust-boundary-the-safety-lines-sodam-ccc-holds">Trust boundary
+— the safety lines SoDam-CCC holds</h3>
+<p>This tool is different from a typical web app. There’s no server,
+login, or sign-up — it’s a <strong>local (your-PC-only)
+tool.</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Concept</th>
+<th>In SoDam-CCC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server / database / web page</td>
+<td><strong>None</strong> — everything runs only inside your own PC</td>
+</tr>
+<tr>
+<td>Login / accounts / payment</td>
+<td><strong>None</strong> — a personal, single-user tool</td>
+</tr>
+<tr>
+<td><strong>Who can send commands to your PC</strong> (authorization
+boundary)</td>
+<td><strong>The Telegram allowlist</strong> — only people registered
+there</td>
+</tr>
+<tr>
+<td><strong>The most sensitive secret</strong></td>
+<td><strong>The bot token</strong> (issued by Telegram)</td>
+</tr>
+<tr>
+<td><strong>The most dangerous permission</strong></td>
+<td><strong>Approval authority</strong> — approving means a real file
+write or command execution happens</td>
+</tr>
+</tbody>
+</table>
+<h3 id="three-design-principles-details-in-section-15">Three design
+principles (details in section 15)</h3>
+<ol type="1">
+<li><strong>What isn’t read can’t leak</strong> — the token file is only
+checked for existence, its contents are never opened</li>
+<li><strong>What isn’t touched directly can’t be broken</strong> —
+configuration changes only ever happen through Claude Code’s official
+commands</li>
+<li><strong>Only fixed strings are ever executed</strong> — diagnostic
+commands never have externally-read values spliced into them (this
+structurally prevents command injection)</li>
+</ol>
+<hr />
+<h2 id="security-data-flow">15. Security &amp; Data Flow</h2>
+<h3 id="where-is-my-information-stored">Where is my information
+stored?</h3>
+<p>The bot token (the most sensitive value here) is stored <strong>only
+on your own computer</strong>
+(<code>&lt;your user folder&gt;\.claude\channels\telegram\.env</code>).
+It is never sent to an external server, and SoDam-CCC never copies it
+anywhere.</p>
+<p><strong>SoDam-CCC never opens this file’s contents.</strong> It only
+checks whether the file “exists or not” — like checking whether an
+envelope exists without ever opening it. Structurally, this means
+SoDam-CCC has no way to leak the token even if it wanted to.</p>
+<h3 id="the-allowlist-approval-authority">The allowlist = approval
+authority</h3>
+<p>Being on the Telegram allowlist isn’t just “can send messages” — it
+means <strong>can approve risky actions on your PC, like writing files
+or running commands.</strong> Approval requests are sent to
+<strong>everyone</strong> on the allowlist. Because of this: - SoDam-CCC
+<strong>never automatically adds anyone besides you</strong> to the
+allowlist. - The moment setup finishes, it always displays how powerful
+this permission is. - If two or more people are on the allowlist,
+<code>/sodam-ccc:status</code> warns you about it.</p>
+<h3 id="three-layer-defense-output-rules">Three-layer defense (output
+rules)</h3>
+<p>The three layers SoDam-CCC follows whenever it shows you something on
+screen.</p>
+<pre><code>Layer 1  Don&#39;t read it       → never accesses the token file&#39;s contents in the first place
+Layer 2  Show only verdicts   → shows &quot;found/not found, pass/fail&quot; only, never raw file contents
+Layer 3  Mask on the way out  → if a token-shaped string were ever about to be shown, it gets hidden right before display</code></pre>
+<h3 id="the-approval-flow-the-security-meaning-behind-section-8">The
+approval flow (the security meaning behind section 8)</h3>
+<p>When Claude Code wants to write a file or run a command, it needs
+approval. In channel mode, this approval request can also reach your
+<strong>phone</strong> — convenient, but also the <strong>single most
+powerful permission</strong> in this whole system, which is why managing
+the allowlist carefully matters more than anything else here.</p>
+<h3 id="be-careful-with-screenshots">Be careful with screenshots</h3>
+<p>If you plan to screenshot this tool’s output and share it (with
+another person or online), double-check that it doesn’t contain
+<strong>your account folder path, user ID, or a token-shaped
+string.</strong> SoDam-CCC’s own output is designed to avoid showing
+these, but it can’t mask what appears in a PowerShell window or any
+other screen it doesn’t control.</p>
+<h3 id="automatic-risk-self-checks">Automatic risk self-checks</h3>
+<p><code>/sodam-ccc:status</code> and <code>/sodam-ccc:fix</code>
+automatically check the following every time: - Is the allowlist 2 or
+more people? (warning) - Is group-chat access turned on? (warning) - Is
+there any sign of a risky launch flag (<code>--dangerously-...</code>)
+being used? (warning)</p>
+<p>SoDam-CCC <strong>never recommends or runs</strong> risky launch
+flags (such as ones that skip permission checks).</p>
+<hr />
+<h2 id="troubleshooting">16. Troubleshooting</h2>
+<p><code>/sodam-ccc:fix</code> checks and guides you automatically, but
+here’s a quick reference if you want to look something up yourself.
+Frequency: 🔴 very common · 🟡 occasional · 🟢 rare · ⚪ expected
+behavior (not a bug).</p>
+<h3 id="the-bot-isnt-responding-at-all">🔴 The bot isn’t responding at
+all</h3>
+<p>Most common causes, in order: ① You ran plain <code>claude</code>
+instead of using <code>--channels</code> → close it and re-run the
+command in <a href="#7-how-to-run-it">section 7</a>. ② The Claude Code
+session itself is off → start a session (both the PC and the session
+need to be running). ③ The plugin isn’t installed yet. ④ The token isn’t
+registered yet.</p>
+<h3 id="it-looks-like-the-message-sent-but-theres-no-reply">🔴 It looks
+like the message sent, but there’s no reply</h3>
+<p>The most common reason is <strong>an approval request is waiting on
+your PC’s terminal</strong> (not a bug). Tap the button on your phone,
+or send <code>yes &lt;5-letter code&gt;</code>. It could also just be
+taking a while — turning on <code>ackReaction</code> (the “received”
+indicator) lets you at least confirm the message got through.</p>
+<h3 id="plugin-install-is-failing">🔴 <code>/plugin install</code> is
+failing</h3>
+<p>Either the marketplace isn’t registered yet
+(<code>/plugin marketplace add anthropics/claude-plugins-official</code>),
+or the catalog is stale (if auto-update is off, run
+<code>/plugin marketplace update claude-plugins-official</code> and try
+again).</p>
+<h3 id="the-pairing-code-never-arrives">🟡 The pairing code never
+arrives</h3>
+<p>The safety lock (<code>allowlist</code>) may already be on, and your
+account just isn’t on the allowlist yet. Temporarily switch the policy
+back to <code>pairing</code>, complete pairing, then <strong>make sure
+to switch it back to <code>allowlist</code></strong> (setup isn’t
+considered complete until it’s locked again). Also double-check the bot
+token itself is correct.</p>
+<h3 id="it-works-in-one-folder-but-not-another">🟡 It works in one
+folder but not another</h3>
+<p>You likely chose <code>project</code> scope during install instead of
+<code>user</code>. Reinstall with <code>user</code> scope (see <a
+href="#5-download--installation">section 5</a>).</p>
+<h3 id="it-worked-fine-yesterday-but-suddenly-stopped">🟡 It worked fine
+yesterday, but suddenly stopped</h3>
+<p>If you just updated Claude Code, this could be a temporary regression
+(this feature is still a preview). Check whether the version changed,
+and look for related public issue reports. It could also be a failed
+reconnection of an external tool (MCP) — restarting the session is worth
+trying.</p>
+<h3 id="replies-come-back-oddly-cut-off">🟢 Replies come back oddly cut
+off</h3>
+<p>This is a Telegram message-length limit. The reply-chunking settings
+can be adjusted.</p>
+<h3 id="it-says-the-channel-didnt-register-after-install">🟢 It says the
+channel didn’t register after install</h3>
+<p>Organization account policy may be turned off (this <strong>doesn’t
+apply to personal Pro/Max accounts</strong>). Or the bot name might not
+have been specified correctly after <code>--channels</code>.</p>
+<h3 id="it-didnt-understand-that-thing-from-yesterday-not-a-bug">⚪ It
+didn’t understand “that thing from yesterday” — not a bug</h3>
+<p>Telegram bots cannot look up past conversations. Just restate what
+you need.</p>
+<h3 id="sending-compact-or-similar-doesnt-do-anything-not-a-bug">⚪
+Sending <code>/compact</code> or similar doesn’t do anything — not a
+bug</h3>
+<p>Slash commands are terminal-only and currently don’t run over the
+channel — this is expected behavior, not a failure.</p>
+<h3 id="still-stuck">Still stuck?</h3>
+<p>Type <code>/sodam-ccc:fix</code> <strong>inside Claude Code</strong>.
+It automatically runs all 15 checks, shows failures first, and if it
+still can’t find the cause, asks about specific symptoms to narrow
+things down.</p>
+<hr />
+<h2 id="faq">17. FAQ</h2>
+<p><strong>Q1. Can I turn off my PC?</strong> No. If the PC turns off,
+or the channel session (the window opened with <code>--channels</code>)
+closes, phone messages disappear from that moment on. They don’t arrive
+later once you turn it back on.</p>
+<p><strong>Q2. The bot isn’t replying.</strong> First check whether it
+was started with <code>--channels</code> (see <a
+href="#16-troubleshooting">section 16</a>). <code>/sodam-ccc:fix</code>
+automatically checks the likely causes for you.</p>
+<p><strong>Q3. I sent something and it’s quiet.</strong> It may be
+waiting for approval on your PC (not a bug). Check the PC screen, or
+approve it from your phone.</p>
+<p><strong>Q4. Can I approve from my phone?</strong> Yes. Tap the button
+that appears in the Telegram message, or send
+<code>yes &lt;5-letter code&gt;</code> as text.</p>
+<p><strong>Q5. Can other people use this bot?</strong> Only people
+you’ve added to the allowlist. Keep in mind anyone on the allowlist gets
+the powerful ability to approve risky actions (file writes, command
+execution) on your PC — only add people who truly need that.</p>
+<p><strong>Q6. I lost my bot token.</strong> Open your conversation with
+BotFather (the official bot management account) in Telegram and look up
+your bot list to find it again.</p>
+<p><strong>Q7. How do I move to a new computer?</strong> The bot itself
+(its token) can be reused as-is. Install Claude Code and SoDam-CCC on
+the new PC, then run <code>/sodam-ccc:install</code> — it will guide you
+through the reinstall flow, reusing your existing bot.</p>
+<p><strong>Q8. Does this cost money?</strong> SoDam-CCC itself is free
+(it’s a personal tool, not sold to anyone). However, the paid Claude
+plan (Pro/Max) and each service’s own terms apply separately.</p>
+<p><strong>Q9. It didn’t understand “that thing from
+yesterday.”</strong> This is expected behavior (not a bug). Telegram
+bots cannot look up past conversations.</p>
+<p><strong>Q10. Sending <code>/compact</code> or similar doesn’t
+work.</strong> This is expected behavior (not a bug). Slash commands
+aren’t yet supported over the channel.</p>
+<p><strong>Q11. Isn’t this risky?</strong> As long as the allowlist
+stays limited to just yourself and no risky launch flags (like ones that
+skip permission checks) are used, the structural risk here is fairly
+limited. SoDam-CCC checks and warns about both of these every time.</p>
+<p><strong>Q12. Can I share a screenshot when asking for help?</strong>
+Yes. Just double-check first that your account path, user ID, or a
+token-shaped string isn’t visible on screen, and mask it if it is.</p>
+<hr />
+<h2 id="legal-copyright-license-commercial-use">18. Legal · Copyright ·
+License · Commercial Use</h2>
+<blockquote>
+<p>⚠️ <strong>This section is not legal advice.</strong> Below,
+<strong>confirmed facts</strong> are strictly separated from
+<strong>items that still need review.</strong> If actual public release,
+distribution, delivery, or sale is ever planned, the “needs review”
+items must be confirmed by an actual legal professional first.</p>
+</blockquote>
+<h3 id="current-status-facts">Current status (facts)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Current value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Distribution status</strong></td>
+<td><strong>Private, for the developer’s personal use only.</strong> Not
+distributed, sold, or offered as a service to anyone else</td>
+</tr>
+<tr>
+<td><strong>SoDam-CCC’s own license</strong></td>
+<td><strong>Unspecified.</strong> There is no separate
+<code>LICENSE</code> file in this project</td>
+</tr>
+<tr>
+<td><strong>External code dependencies</strong></td>
+<td><strong>Zero.</strong> No third-party code packages are included
+(only markdown configuration files and Claude Code’s built-in features
+are used)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-unspecified-license-means-strict-standard">What
+“unspecified license” means (strict standard)</h3>
+<p>Under general copyright principles, <strong>a work with no stated
+license is treated as “All Rights Reserved.”</strong> In other words, no
+one except the copyright holder (the developer) has been granted
+permission to <strong>use, copy, modify, redistribute, or commercially
+exploit</strong> it. This is not a problem right now since only the
+developer uses this privately, but the following 8 points are stated
+explicitly and clearly.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Current answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Copyright holder</strong></td>
+<td>The developer who built this project personally — not a separate
+company or organization</td>
+</tr>
+<tr>
+<td><strong>Scope of permitted use</strong></td>
+<td><strong>Currently, the developer only.</strong> No usage right is
+granted to any third party without prior permission</td>
+</tr>
+<tr>
+<td><strong>Commercial use permitted?</strong></td>
+<td><strong>No.</strong> With no license in place, commercial use in any
+form (including sale or paid service) is not permitted</td>
+</tr>
+<tr>
+<td><strong>Prohibited actions</strong></td>
+<td>Copying, redistribution, resale, publishing derivative works, and
+commercial use — all prohibited without prior permission</td>
+</tr>
+<tr>
+<td><strong>Limitation of liability</strong></td>
+<td>The developer is not liable for any damage arising from use of this
+tool (misconfiguration, account issues, data loss, or otherwise)</td>
+</tr>
+<tr>
+<td><strong>No warranty</strong></td>
+<td>This tool is provided “as-is,” with no warranty of fitness for a
+particular purpose or freedom from errors</td>
+</tr>
+<tr>
+<td><strong>Caution about external material</strong></td>
+<td>Each program this project depends on (see table below) carries
+<strong>its own separate license or terms of service</strong>, which
+apply independently of this document</td>
+</tr>
+<tr>
+<td><strong>Modify / fork / redistribute / sell / operate as a service /
+use for education / deliver to a client</strong></td>
+<td><strong>All currently not permitted</strong> (unspecified license =
+all rights reserved)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trademark-unofficial-status-notice">Trademark &amp;
+unofficial-status notice</h3>
+<p>SoDam-CCC is <strong>not an official Anthropic (the maker of Claude
+Code) product, and has no affiliation or endorsement of any
+kind.</strong> Its name is used only in the descriptive sense of “an
+unofficial personal tool for Claude Code,” and it does not include any
+Anthropic or Telegram logos or trademark imagery.</p>
+<h3
+id="separate-terms-for-each-dependency-independent-of-sodam-ccc-check-each-on-your-own">Separate
+terms for each dependency (independent of SoDam-CCC — check each on your
+own)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code / Anthropic</strong></td>
+<td>Terms of service · pricing plans · model usage policy</td>
+</tr>
+<tr>
+<td><strong>Telegram / Telegram Bot API</strong></td>
+<td>Bot terms of service · bot operating policy (the entity actually
+operating the bot is <strong>the user themselves</strong>)</td>
+</tr>
+<tr>
+<td><strong>Official Telegram channel plugin</strong></td>
+<td>Confirmed to be Apache License 2.0. SoDam-CCC does not bundle this
+plugin — users install it directly from the official marketplace</td>
+</tr>
+<tr>
+<td><strong>Bun (runtime)</strong></td>
+<td>Has its own separate runtime license. Installed directly by the
+user</td>
+</tr>
+</tbody>
+</table>
+<h3 id="about-the-code-used-in-this-project">About the code used in this
+project</h3>
+<p>A significant portion of this project’s code and documentation was
+written together with AI (Claude Code). The official plugin’s source
+code was <strong>only read to understand how it works — it was never
+copied into this project</strong> (any citation is by file path and line
+number only).</p>
+<h3 id="if-this-is-ever-made-public-not-applicable-right-now">If this is
+ever made public (not applicable right now)</h3>
+<p>If this project is ever turned into a public repository, or
+distributed/delivered/sold to someone else, the following
+<strong>must</strong> happen at that point — none of this applies yet,
+since this is currently private and personal-use only. This document
+states that fact in advance: - Finalize a real license (e.g., Apache
+License 2.0) and add a <code>LICENSE</code> file - Confirm whether a
+copyright notice (NOTICE) file is required - Get <strong>actual review
+from a legal professional</strong> on AI-generated-work rights, the
+scope of permitted trademark references, and liability in case of
+delivery or sale</p>
+<hr />
+<p>📌 This document is based on SoDam-CCC’s actual design documents (the
+<code>.PRD</code> folder) and actual skill code (the
+<code>skills/</code> and <code>data/</code> folders). If actual behavior
+ever diverges from this document, the principle is to update the
+document alongside the code.</p>
+</body>
+</html>
