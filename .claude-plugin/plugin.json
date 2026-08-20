@@ -1,6 +1,6 @@
 {
   "name": "sodam-ccc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Claude Code Channels(폰 텔레그램 원격) 재설치를 검사·안내하는 개인용 도구. 나 혼자 쓰는 PRIVATE 플러그인.",
   "author": { "name": "SoDam AI Studio" },
   "skills": ["./skills"]
