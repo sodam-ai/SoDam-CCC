@@ -130,7 +130,8 @@ Claude Code Channels(폰에서 내 PC의 Claude Code에 명령 보내기)를 **�
 
 Phase 1의 완료 판정은 **문서가 아니라 사건**으로 합니다.
 
-- [ ] **S0(선행 조건 — 다른 모든 기준보다 먼저 확인)**: CCC 자신이 `marketplace.json`+`plugin.json`+`skills`/`commands` 구조로 실제 마켓플레이스 등록 → 설치 → 슬래시 명령 인식까지 성공한다. 새 세션에서 `/plugin marketplace add`(로컬 경로) → `/plugin install sodam-ccc@...` → `/sodam-ccc:install`이 실제로 뜨는지 확인. **이게 안 되면 S1~S8은 애초에 검증할 방법이 없다.** (2026-08-20 추가 — `marketplace.json`이 원안에 통째로 빠져 있었는데, 성공 기준 자체에 "설치 가능성"을 요구하는 항목이 없어 세션 내내 아무도 못 잡았던 것이 근본 원인이었음)
+- [ ] **S0(선행 조건 — 다른 모든 기준보다 먼저 확인)**: CCC 자신이 `marketplace.json`+`plugin.json`+`skills`/`commands` 구조로 실제 마켓플레이스 등록 → 설치 → 슬래시 명령 인식까지 성공한다. 새 세션에서 `/plugin marketplace add`(GitHub 저장소) → `/plugin install sodam-ccc@...` → `/sodam-ccc:install`이 실제로 뜨는지 확인. **이게 안 되면 S1~S8은 애초에 검증할 방법이 없다.** (2026-08-20 추가 — `marketplace.json`이 원안에 통째로 빠져 있었는데, 성공 기준 자체에 "설치 가능성"을 요구하는 항목이 없어 세션 내내 아무도 못 잡았던 것이 근본 원인이었음)
+  > 🔧 **2026-09-01 갱신**: 최초 검증(M1, 2026-08-19~20)은 로컬 디렉터리 경로(`/plugin marketplace add <D: 드라이브 경로>`)로 통과했으나, "새 PC 재설치 편의"라는 §2 원래 목적엔 GitHub 방식이 더 부합한다는 재검토로 GitHub 저장소(`sodam-ai/SoDam-CCC`, private) 기반으로 전환. 실측: 기존 로컬 등록 제거 → `claude plugin marketplace add sodam-ai/SoDam-CCC`(private repo, HTTPS clone 성공 확인) → `claude plugin install sodam-ccc@sodam-ccc-marketplace` 설치 성공, 설치 캐시의 `gitCommitSha`가 방금 push한 원격 최신 커밋과 일치함을 확인 → `claude plugin validate ... --strict` 통과. **단, "새 세션에서 슬래시 명령 인식"까지는 이 전환을 실행한 세션 안에서는 확인 불가**(플러그인 재로드가 세션 재시작을 필요로 할 수 있음, 미확인) — 다음 새 세션에서 재확인 필요.
 - [ ] **S1**: 이 PC의 방치된 Discord 상태(`토큰만 있고 페어링 없음`)를 `status`가 **정확히 짚어낸다**
 - [ ] **S2**: `status`가 Telegram의 **검사 항목 15개**(일반 12 + 보안 3)를 모두 판정하고, 진도를 **"N/12단계"** 로 보여준다
   - 보안 검사 3개(CHK-13·15·16)는 **진도에 포함되지 않고 경고로만** 표시된다
