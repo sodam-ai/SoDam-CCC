@@ -17,10 +17,12 @@
 ## 경로 기준점 (고정, 조합 금지 — `..` 포함 경로 거부)
 
 ```
-채널 루트 = $env:USERPROFILE\.claude\channels\
+채널 루트 = $env:CLAUDE_CONFIG_DIR\channels\   (미설정 시 $env:USERPROFILE\.claude\channels\ 로 대체)
 설정 루트 = $env:CLAUDE_CONFIG_DIR   (미설정 시 $env:USERPROFILE\.claude 로 대체)
 ```
 두 루트는 역할이 다르다. 채널 설정(토큰·허용목록)은 항상 **채널 루트**, 플러그인 캐시·설치기록·전역 설정은 **설정 루트**. 섞어 쓰지 않는다.
+
+> 🔧 **2026-09-01 정정**: "채널 루트"가 예전엔 `$env:USERPROFILE\.claude\channels\`로 고정 기록돼 있었다. 이건 **틀린 정보였다** — 공식 `telegram` 플러그인의 실제 코드(`skills/configure/SKILL.md`·`server.ts` 둘 다)는 토큰을 저장/읽을 때 `CLAUDE_CONFIG_DIR`이 설정돼 있으면 그걸 최우선으로 쓴다(`설정 루트`와 완전히 같은 우선순위). 2026-08-24부터 이 PC의 `CLAUDE_CONFIG_DIR`이 `AppData\Roaming\claude-code`로 전역 설정되면서, 그 뒤로는 "채널 루트"도 "설정 루트"와 같은 규칙을 따라야 맞는데 이 문서만 옛날 고정값을 계속 갖고 있었다. 그 결과 CHK-06·CHK-09·CHK-10 등 "채널 루트" 기준으로 판정하던 모든 검사가, 8/24 이후 이 PC에서는 **실제 서버가 보는 위치와 다른 곳**을 확인해온 것으로 확인됨(server.ts를 직접 실행 재현해 확정 — 추측 아님). 코드(`skills/status`·`skills/fix`)는 이 문서를 참조만 하므로 수정 불필요, 이 문서만 고치면 다음 실행부터 정확한 위치를 본다.
 
 ## 일반 검사 12개
 
