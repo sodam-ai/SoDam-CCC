@@ -556,8 +556,10 @@ Yes. Just double-check first that your account path, user ID, or a token-shaped 
 | Item | Current value |
 |---|---|
 | **Distribution status** | **Private, for the developer's personal use only.** Not distributed, sold, or offered as a service to anyone else |
-| **SoDam-CCC's own license** | **Unspecified.** There is no separate `LICENSE` file in this project |
-| **External code dependencies** | **Zero.** No third-party code packages are included (only markdown configuration files and Claude Code's built-in features are used) |
+| **SoDam-CCC's own license** | **Unspecified.** There is no separate `LICENSE` or `NOTICE` file in this project (confirmed — neither exists at the project root) |
+| **External code dependencies** | **Zero.** There isn't even a dependency manifest (`package.json`, `requirements.txt`, etc.) to check (confirmed), so there is structurally nothing to run a license check against |
+| **Images, fonts, icons, video, audio, and other media assets** | **Zero.** This project contains only markdown documents and JSON config files — no separate media/asset files exist (confirmed) |
+| **Author name in the plugin manifest** | `.claude-plugin/plugin.json` and `marketplace.json` both list `"SoDam AI Studio"` (confirmed fact). Whether this name refers to the same individual as the "copyright holder" below, or needs to be formally clarified, is **for the user to decide** (⚖️ needs a decision) |
 
 ### What "unspecified license" means (strict standard)
 
@@ -587,9 +589,11 @@ SoDam-CCC is **not an official Anthropic (the maker of Claude Code) product, and
 | **Official Telegram channel plugin** | Confirmed to be Apache License 2.0. SoDam-CCC does not bundle this plugin — users install it directly from the official marketplace |
 | **Bun (runtime)** | Has its own separate runtime license. Installed directly by the user |
 
-### About the code used in this project
+### About the code used in this project (AI-generated content caution)
 
-A significant portion of this project's code and documentation was written together with AI (Claude Code). The official plugin's source code was **only read to understand how it works — it was never copied into this project** (any citation is by file path and line number only).
+A significant portion of this project's code and documentation was written together with **AI (Claude Code).** The official plugin's source code was **only read to understand how it works — it was never copied into this project** (any citation is by file path and line number only).
+
+> ⚠️ **Verify AI-generated content yourself before any commercial use.** Code or documentation written by AI is not automatically free of copyright, sourcing, or similarity-to-existing-work issues. That's not a problem right now, since this project is private and personal-use only — but if you (or anyone) ever plan to make this project (or part of it) public, redistribute it, or use it commercially, a human must directly verify **copyright ownership, sourcing, whether commercial use is permitted, and the possibility of infringing an existing work** at that time (⚖️ needs legal/expert review).
 
 ### If this is ever made public (not applicable right now)
 

@@ -416,9 +416,10 @@ href="#separate-terms-for-each-dependency-independent-of-sodam-ccc-check-each-on
 id="toc-separate-terms-for-each-dependency-independent-of-sodam-ccc-check-each-on-your-own">Separate
 terms for each dependency (independent of SoDam-CCC — check each on your
 own)</a></li>
-<li><a href="#about-the-code-used-in-this-project"
-id="toc-about-the-code-used-in-this-project">About the code used in this
-project</a></li>
+<li><a
+href="#about-the-code-used-in-this-project-ai-generated-content-caution"
+id="toc-about-the-code-used-in-this-project-ai-generated-content-caution">About
+the code used in this project (AI-generated content caution)</a></li>
 <li><a href="#if-this-is-ever-made-public-not-applicable-right-now"
 id="toc-if-this-is-ever-made-public-not-applicable-right-now">If this is
 ever made public (not applicable right now)</a></li>
@@ -1506,13 +1507,30 @@ distributed, sold, or offered as a service to anyone else</td>
 <tr>
 <td><strong>SoDam-CCC’s own license</strong></td>
 <td><strong>Unspecified.</strong> There is no separate
-<code>LICENSE</code> file in this project</td>
+<code>LICENSE</code> or <code>NOTICE</code> file in this project
+(confirmed — neither exists at the project root)</td>
 </tr>
 <tr>
 <td><strong>External code dependencies</strong></td>
-<td><strong>Zero.</strong> No third-party code packages are included
-(only markdown configuration files and Claude Code’s built-in features
-are used)</td>
+<td><strong>Zero.</strong> There isn’t even a dependency manifest
+(<code>package.json</code>, <code>requirements.txt</code>, etc.) to
+check (confirmed), so there is structurally nothing to run a license
+check against</td>
+</tr>
+<tr>
+<td><strong>Images, fonts, icons, video, audio, and other media
+assets</strong></td>
+<td><strong>Zero.</strong> This project contains only markdown documents
+and JSON config files — no separate media/asset files exist
+(confirmed)</td>
+</tr>
+<tr>
+<td><strong>Author name in the plugin manifest</strong></td>
+<td><code>.claude-plugin/plugin.json</code> and
+<code>marketplace.json</code> both list <code>"SoDam AI Studio"</code>
+(confirmed fact). Whether this name refers to the same individual as the
+“copyright holder” below, or needs to be formally clarified, is
+<strong>for the user to decide</strong> (⚖️ needs a decision)</td>
 </tr>
 </tbody>
 </table>
@@ -1625,13 +1643,26 @@ user</td>
 </tr>
 </tbody>
 </table>
-<h3 id="about-the-code-used-in-this-project">About the code used in this
-project</h3>
+<h3
+id="about-the-code-used-in-this-project-ai-generated-content-caution">About
+the code used in this project (AI-generated content caution)</h3>
 <p>A significant portion of this project’s code and documentation was
-written together with AI (Claude Code). The official plugin’s source
-code was <strong>only read to understand how it works — it was never
-copied into this project</strong> (any citation is by file path and line
-number only).</p>
+written together with <strong>AI (Claude Code).</strong> The official
+plugin’s source code was <strong>only read to understand how it works —
+it was never copied into this project</strong> (any citation is by file
+path and line number only).</p>
+<blockquote>
+<p>⚠️ <strong>Verify AI-generated content yourself before any commercial
+use.</strong> Code or documentation written by AI is not automatically
+free of copyright, sourcing, or similarity-to-existing-work issues.
+That’s not a problem right now, since this project is private and
+personal-use only — but if you (or anyone) ever plan to make this
+project (or part of it) public, redistribute it, or use it commercially,
+a human must directly verify <strong>copyright ownership, sourcing,
+whether commercial use is permitted, and the possibility of infringing
+an existing work</strong> at that time (⚖️ needs legal/expert
+review).</p>
+</blockquote>
 <h3 id="if-this-is-ever-made-public-not-applicable-right-now">If this is
 ever made public (not applicable right now)</h3>
 <p>If this project is ever turned into a public repository, or
