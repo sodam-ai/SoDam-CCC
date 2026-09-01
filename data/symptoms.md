@@ -17,6 +17,7 @@
 | 3 | 플러그인 미설치 | CHK-05 | 6단계부터 진행 |
 | 4 | 토큰 미등록 | CHK-06 | 8단계부터 진행 |
 | 5 | 🔧 **2026-08-31 실측 발견 — 채널 창은 떴는데(`claude --channels`로 실행 중) 계속 CHK-09가 실패** | CHK-09 + CHK-06(단, CHK-06은 "존재 여부만" 확인이라 토큰이 살아있는지는 못 봄 — 이게 원인을 못 잡는 이유) | 봇 토큰이 무효화됐을 가능성(BotFather에서 봇을 삭제·재발급했을 때 등). **BotFather에서 그 봇이 아직 있는지 먼저 확인** → 없거나 토큰이 안 맞으면 새 토큰으로 8단계(`/telegram:configure`)부터 재등록 |
+| 6 | 🔧 **2026-09-01 실측 발견 — 서버를 직접 재현 실행하면 켜지자마자 "TELEGRAM_BOT_TOKEN required"로 즉시 종료됨(CHK-06은 통과인데도)** | CHK-09(계속 실패) — 원인 확정은 `.mcp.json`의 `bun run start` 직접 재현 실행으로만 가능(일반 사용자는 서버 메시지를 볼 수 없어 CHK-09 실패로만 보임) | `.env`가 **채널 루트(`$env:CLAUDE_CONFIG_DIR\channels\telegram\`, 이 PC는 `%APPDATA%\claude-code\...`)가 아니라 옛 기본 위치(`~/.claude/channels/telegram/`)에만 있는 경우** 발생(이 PC는 2026-08-24부터 `CLAUDE_CONFIG_DIR`이 전역 설정돼 채널 루트가 옮겨짐 — `FACTS_VOLATILE.md` §3 참조). **1차 조치**: `/telegram:configure`로 토큰을 **다시** 등록한다(공식 명령이 `CLAUDE_CONFIG_DIR`을 우선 참조하므로 올바른 위치에 새로 써질 것으로 기대됨). **재검사(CHK-09)해도 여전히 실패하면 2차 조치**: `%APPDATA%\claude-code\channels\telegram\.env` 파일이 실제로 생겼는지 존재 여부만 확인 — 없으면 옛 위치(`~/.claude/channels/telegram/.env`)의 파일을 그대로 복사해 새 위치에 붙여넣는다(내용은 열지 않음) |
 
 ## SYM-02 · "페어링 코드가 안 와요" — 🟡
 
