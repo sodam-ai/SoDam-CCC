@@ -1,5 +1,5 @@
 ---
-name: status
+name: status-flow
 description: SoDam-CCC 상태 점검 — Telegram Channels 설치가 지금 몇 단계까지 됐는지, 위험한 설정이 남아있지 않은지 검사해서 보여준다. 읽기 전용. "/sodam-ccc:status" 실행 시 사용.
 ---
 

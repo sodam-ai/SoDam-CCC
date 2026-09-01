@@ -1,5 +1,5 @@
 ---
-name: install
+name: install-flow
 description: SoDam-CCC 설치 마법사 — Telegram Channels가 몇 단계까지 됐는지 검사해서, 아직 안 된 단계만 순서대로 안내한다. 필요하면 공식 명령을 사용자 확인 후 진행하고, 정책이 allowlist가 될 때까지 "완료"를 선언하지 않는다. "/sodam-ccc:install" 실행 시 사용.
 ---
 
