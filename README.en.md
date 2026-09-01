@@ -555,26 +555,27 @@ Yes. Just double-check first that your account path, user ID, or a token-shaped 
 
 | Item | Current value |
 |---|---|
-| **Distribution status** | **Private, for the developer's personal use only.** Not distributed, sold, or offered as a service to anyone else |
-| **SoDam-CCC's own license** | **Unspecified.** There is no separate `LICENSE` or `NOTICE` file in this project (confirmed — neither exists at the project root) |
+| **Distribution status** | **Private.** GitHub repository `sodam-ai/SoDam-CCC` (see the separate note at the bottom of this section for whether/when it goes public) |
+| **SoDam-CCC's own license** | **Apache License 2.0.** The full official license text is in the `LICENSE` file at the project root (added 2026-09-01) |
+| **Copyright holder · year** | `SoDam AI Studio`, 2026 (stated in the `LICENSE` file) |
+| **NOTICE file** | **None (not required).** Apache License 2.0 only requires passing along a NOTICE file's contents when the upstream work already has one. This project has zero external dependencies, so there's no such content to pass along |
 | **External code dependencies** | **Zero.** There isn't even a dependency manifest (`package.json`, `requirements.txt`, etc.) to check (confirmed), so there is structurally nothing to run a license check against |
 | **Images, fonts, icons, video, audio, and other media assets** | **Zero.** This project contains only markdown documents and JSON config files — no separate media/asset files exist (confirmed) |
-| **Author name in the plugin manifest** | `.claude-plugin/plugin.json` and `marketplace.json` both list `"SoDam AI Studio"` (confirmed fact). Whether this name refers to the same individual as the "copyright holder" below, or needs to be formally clarified, is **for the user to decide** (⚖️ needs a decision) |
+| **Author name in the plugin manifest** | `.claude-plugin/plugin.json` and `marketplace.json` both list `"SoDam AI Studio"`, matching the copyright holder named in `LICENSE` (confirmed, now consistent) |
 
-### What "unspecified license" means (strict standard)
+### What Apache License 2.0 actually permits and requires (plain-language summary)
 
-Under general copyright principles, **a work with no stated license is treated as "All Rights Reserved."** In other words, no one except the copyright holder (the developer) has been granted permission to **use, copy, modify, redistribute, or commercially exploit** it. This is not a problem right now since only the developer uses this privately, but the following 8 points are stated explicitly and clearly.
+> This is a plain-language summary to help you understand the `LICENSE` file. **If anything here seems to conflict with it, the actual `LICENSE` text always governs.**
 
-| Item | Current answer |
+| Item | What it means |
 |---|---|
-| **Copyright holder** | The developer who built this project personally — not a separate company or organization |
-| **Scope of permitted use** | **Currently, the developer only.** No usage right is granted to any third party without prior permission |
-| **Commercial use permitted?** | **No.** With no license in place, commercial use in any form (including sale or paid service) is not permitted |
-| **Prohibited actions** | Copying, redistribution, resale, publishing derivative works, and commercial use — all prohibited without prior permission |
-| **Limitation of liability** | The developer is not liable for any damage arising from use of this tool (misconfiguration, account issues, data loss, or otherwise) |
-| **No warranty** | This tool is provided "as-is," with no warranty of fitness for a particular purpose or freedom from errors |
-| **Caution about external material** | Each program this project depends on (see table below) carries **its own separate license or terms of service**, which apply independently of this document |
-| **Modify / fork / redistribute / sell / operate as a service / use for education / deliver to a client** | **All currently not permitted** (unspecified license = all rights reserved) |
+| **Scope of permitted use** | **Anyone** may use, copy, modify, distribute, and commercially exploit this project |
+| **Commercial use permitted?** | **Yes.** Commercial use, including sale or a paid service, is permitted |
+| **Modify / fork / redistribute / sell / operate as a service / use for education / deliver to a client** | **All permitted.** Redistribution must follow the conditions below |
+| **Conditions you must follow when redistributing** | ① Include a copy of `LICENSE` ② Clearly mark any files you changed ③ Keep the original copyright, patent, and trademark notices intact (except ones unrelated to the part you're distributing) ④ If the work you're distributing has a NOTICE file, pass its contents along too (not applicable here — this project has none) |
+| **What this does NOT grant** | **Trademark rights are separate.** This license does not automatically let you use the "SoDam-CCC" name or trademark (see "Trademark & unofficial-status notice" below). There's also a patent-litigation clause: filing patent litigation over this work automatically terminates your patent license under it (see `LICENSE` section 3) |
+| **Limitation of liability · No warranty** | This software is provided **"AS IS,"** with no warranty of any kind, express or implied. The copyright holder is not liable for damages arising from its use (see `LICENSE` sections 7 and 8) |
+| **Caution about external material** | Each program this project depends on (see table below) carries **its own separate license or terms of service**, independent of this project's `LICENSE` |
 
 ### Trademark & unofficial-status notice
 
@@ -595,12 +596,11 @@ A significant portion of this project's code and documentation was written toget
 
 > ⚠️ **Verify AI-generated content yourself before any commercial use.** Code or documentation written by AI is not automatically free of copyright, sourcing, or similarity-to-existing-work issues. That's not a problem right now, since this project is private and personal-use only — but if you (or anyone) ever plan to make this project (or part of it) public, redistribute it, or use it commercially, a human must directly verify **copyright ownership, sourcing, whether commercial use is permitted, and the possibility of infringing an existing work** at that time (⚖️ needs legal/expert review).
 
-### If this is ever made public (not applicable right now)
+### Remaining items to review
 
-If this project is ever turned into a public repository, or distributed/delivered/sold to someone else, the following **must** happen at that point — none of this applies yet, since this is currently private and personal-use only. This document states that fact in advance:
-- Finalize a real license (e.g., Apache License 2.0) and add a `LICENSE` file
-- Confirm whether a copyright notice (NOTICE) file is required
-- Get **actual review from a legal professional** on AI-generated-work rights, the scope of permitted trademark references, and liability in case of delivery or sale
+- ~~Finalize a real license and add a `LICENSE` file~~ — **Done** (Apache License 2.0, 2026-09-01)
+- ~~Confirm whether a NOTICE file is required~~ — **Done** (confirmed unnecessary — zero external dependencies)
+- The rights around AI-generated content (copyright, possibility of infringing an existing work), and liability in situations with real stakes like client delivery or sale, still **need actual review from a legal professional** (⚖️ needs legal review) — nothing in this README substitutes for that
 
 ---
 

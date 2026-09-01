@@ -405,9 +405,11 @@ License · Commercial Use</a>
 <ul>
 <li><a href="#current-status-facts"
 id="toc-current-status-facts">Current status (facts)</a></li>
-<li><a href="#what-unspecified-license-means-strict-standard"
-id="toc-what-unspecified-license-means-strict-standard">What
-“unspecified license” means (strict standard)</a></li>
+<li><a
+href="#what-apache-license-2.0-actually-permits-and-requires-plain-language-summary"
+id="toc-what-apache-license-2.0-actually-permits-and-requires-plain-language-summary">What
+Apache License 2.0 actually permits and requires (plain-language
+summary)</a></li>
 <li><a href="#trademark-unofficial-status-notice"
 id="toc-trademark-unofficial-status-notice">Trademark &amp;
 unofficial-status notice</a></li>
@@ -420,9 +422,8 @@ own)</a></li>
 href="#about-the-code-used-in-this-project-ai-generated-content-caution"
 id="toc-about-the-code-used-in-this-project-ai-generated-content-caution">About
 the code used in this project (AI-generated content caution)</a></li>
-<li><a href="#if-this-is-ever-made-public-not-applicable-right-now"
-id="toc-if-this-is-ever-made-public-not-applicable-right-now">If this is
-ever made public (not applicable right now)</a></li>
+<li><a href="#remaining-items-to-review"
+id="toc-remaining-items-to-review">Remaining items to review</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1501,14 +1502,27 @@ items must be confirmed by an actual legal professional first.</p>
 <tbody>
 <tr>
 <td><strong>Distribution status</strong></td>
-<td><strong>Private, for the developer’s personal use only.</strong> Not
-distributed, sold, or offered as a service to anyone else</td>
+<td><strong>Private.</strong> GitHub repository
+<code>sodam-ai/SoDam-CCC</code> (see the separate note at the bottom of
+this section for whether/when it goes public)</td>
 </tr>
 <tr>
 <td><strong>SoDam-CCC’s own license</strong></td>
-<td><strong>Unspecified.</strong> There is no separate
-<code>LICENSE</code> or <code>NOTICE</code> file in this project
-(confirmed — neither exists at the project root)</td>
+<td><strong>Apache License 2.0.</strong> The full official license text
+is in the <code>LICENSE</code> file at the project root (added
+2026-09-01)</td>
+</tr>
+<tr>
+<td><strong>Copyright holder · year</strong></td>
+<td><code>SoDam AI Studio</code>, 2026 (stated in the
+<code>LICENSE</code> file)</td>
+</tr>
+<tr>
+<td><strong>NOTICE file</strong></td>
+<td><strong>None (not required).</strong> Apache License 2.0 only
+requires passing along a NOTICE file’s contents when the upstream work
+already has one. This project has zero external dependencies, so there’s
+no such content to pass along</td>
 </tr>
 <tr>
 <td><strong>External code dependencies</strong></td>
@@ -1527,22 +1541,22 @@ and JSON config files — no separate media/asset files exist
 <tr>
 <td><strong>Author name in the plugin manifest</strong></td>
 <td><code>.claude-plugin/plugin.json</code> and
-<code>marketplace.json</code> both list <code>"SoDam AI Studio"</code>
-(confirmed fact). Whether this name refers to the same individual as the
-“copyright holder” below, or needs to be formally clarified, is
-<strong>for the user to decide</strong> (⚖️ needs a decision)</td>
+<code>marketplace.json</code> both list <code>"SoDam AI Studio"</code>,
+matching the copyright holder named in <code>LICENSE</code> (confirmed,
+now consistent)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="what-unspecified-license-means-strict-standard">What
-“unspecified license” means (strict standard)</h3>
-<p>Under general copyright principles, <strong>a work with no stated
-license is treated as “All Rights Reserved.”</strong> In other words, no
-one except the copyright holder (the developer) has been granted
-permission to <strong>use, copy, modify, redistribute, or commercially
-exploit</strong> it. This is not a problem right now since only the
-developer uses this privately, but the following 8 points are stated
-explicitly and clearly.</p>
+<h3
+id="what-apache-license-2.0-actually-permits-and-requires-plain-language-summary">What
+Apache License 2.0 actually permits and requires (plain-language
+summary)</h3>
+<blockquote>
+<p>This is a plain-language summary to help you understand the
+<code>LICENSE</code> file. <strong>If anything here seems to conflict
+with it, the actual <code>LICENSE</code> text always
+governs.</strong></p>
+</blockquote>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1551,51 +1565,55 @@ explicitly and clearly.</p>
 <thead>
 <tr>
 <th>Item</th>
-<th>Current answer</th>
+<th>What it means</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Copyright holder</strong></td>
-<td>The developer who built this project personally — not a separate
-company or organization</td>
-</tr>
-<tr>
 <td><strong>Scope of permitted use</strong></td>
-<td><strong>Currently, the developer only.</strong> No usage right is
-granted to any third party without prior permission</td>
+<td><strong>Anyone</strong> may use, copy, modify, distribute, and
+commercially exploit this project</td>
 </tr>
 <tr>
 <td><strong>Commercial use permitted?</strong></td>
-<td><strong>No.</strong> With no license in place, commercial use in any
-form (including sale or paid service) is not permitted</td>
-</tr>
-<tr>
-<td><strong>Prohibited actions</strong></td>
-<td>Copying, redistribution, resale, publishing derivative works, and
-commercial use — all prohibited without prior permission</td>
-</tr>
-<tr>
-<td><strong>Limitation of liability</strong></td>
-<td>The developer is not liable for any damage arising from use of this
-tool (misconfiguration, account issues, data loss, or otherwise)</td>
-</tr>
-<tr>
-<td><strong>No warranty</strong></td>
-<td>This tool is provided “as-is,” with no warranty of fitness for a
-particular purpose or freedom from errors</td>
-</tr>
-<tr>
-<td><strong>Caution about external material</strong></td>
-<td>Each program this project depends on (see table below) carries
-<strong>its own separate license or terms of service</strong>, which
-apply independently of this document</td>
+<td><strong>Yes.</strong> Commercial use, including sale or a paid
+service, is permitted</td>
 </tr>
 <tr>
 <td><strong>Modify / fork / redistribute / sell / operate as a service /
 use for education / deliver to a client</strong></td>
-<td><strong>All currently not permitted</strong> (unspecified license =
-all rights reserved)</td>
+<td><strong>All permitted.</strong> Redistribution must follow the
+conditions below</td>
+</tr>
+<tr>
+<td><strong>Conditions you must follow when redistributing</strong></td>
+<td>① Include a copy of <code>LICENSE</code> ② Clearly mark any files
+you changed ③ Keep the original copyright, patent, and trademark notices
+intact (except ones unrelated to the part you’re distributing) ④ If the
+work you’re distributing has a NOTICE file, pass its contents along too
+(not applicable here — this project has none)</td>
+</tr>
+<tr>
+<td><strong>What this does NOT grant</strong></td>
+<td><strong>Trademark rights are separate.</strong> This license does
+not automatically let you use the “SoDam-CCC” name or trademark (see
+“Trademark &amp; unofficial-status notice” below). There’s also a
+patent-litigation clause: filing patent litigation over this work
+automatically terminates your patent license under it (see
+<code>LICENSE</code> section 3)</td>
+</tr>
+<tr>
+<td><strong>Limitation of liability · No warranty</strong></td>
+<td>This software is provided <strong>“AS IS,”</strong> with no warranty
+of any kind, express or implied. The copyright holder is not liable for
+damages arising from its use (see <code>LICENSE</code> sections 7 and
+8)</td>
+</tr>
+<tr>
+<td><strong>Caution about external material</strong></td>
+<td>Each program this project depends on (see table below) carries
+<strong>its own separate license or terms of service</strong>,
+independent of this project’s <code>LICENSE</code></td>
 </tr>
 </tbody>
 </table>
@@ -1663,18 +1681,19 @@ whether commercial use is permitted, and the possibility of infringing
 an existing work</strong> at that time (⚖️ needs legal/expert
 review).</p>
 </blockquote>
-<h3 id="if-this-is-ever-made-public-not-applicable-right-now">If this is
-ever made public (not applicable right now)</h3>
-<p>If this project is ever turned into a public repository, or
-distributed/delivered/sold to someone else, the following
-<strong>must</strong> happen at that point — none of this applies yet,
-since this is currently private and personal-use only. This document
-states that fact in advance: - Finalize a real license (e.g., Apache
-License 2.0) and add a <code>LICENSE</code> file - Confirm whether a
-copyright notice (NOTICE) file is required - Get <strong>actual review
-from a legal professional</strong> on AI-generated-work rights, the
-scope of permitted trademark references, and liability in case of
-delivery or sale</p>
+<h3 id="remaining-items-to-review">Remaining items to review</h3>
+<ul>
+<li><del>Finalize a real license and add a <code>LICENSE</code>
+file</del> — <strong>Done</strong> (Apache License 2.0, 2026-09-01)</li>
+<li><del>Confirm whether a NOTICE file is required</del> —
+<strong>Done</strong> (confirmed unnecessary — zero external
+dependencies)</li>
+<li>The rights around AI-generated content (copyright, possibility of
+infringing an existing work), and liability in situations with real
+stakes like client delivery or sale, still <strong>need actual review
+from a legal professional</strong> (⚖️ needs legal review) — nothing in
+this README substitutes for that</li>
+</ul>
 <hr />
 <p>📌 This document is based on SoDam-CCC’s actual design documents (the
 <code>.PRD</code> folder) and actual skill code (the

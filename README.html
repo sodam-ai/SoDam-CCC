@@ -396,9 +396,9 @@ id="toc-법률-저작권-라이선스-상업적-사용">18. 법률 · 저작권 
 <ul>
 <li><a href="#현재-상태-사실" id="toc-현재-상태-사실">현재 상태
 (사실)</a></li>
-<li><a href="#라이선스-미지정이-뜻하는-것-엄격-기준"
-id="toc-라이선스-미지정이-뜻하는-것-엄격-기준">라이선스 미지정이 뜻하는
-것 (엄격 기준)</a></li>
+<li><a href="#apache-license-2.0이-실제로-허용요구하는-것-쉬운-말-요약"
+id="toc-apache-license-2.0이-실제로-허용요구하는-것-쉬운-말-요약">Apache
+License 2.0이 실제로 허용·요구하는 것 (쉬운 말 요약)</a></li>
 <li><a href="#상표-비공식-고지" id="toc-상표-비공식-고지">상표 · 비공식
 고지</a></li>
 <li><a
@@ -409,9 +409,8 @@ id="toc-이-도구가-의존하는-각-프로그램의-별도-약관-sodam-ccc�
 <li><a href="#이-프로젝트가-사용한-코드에-대해-ai-생성물-주의"
 id="toc-이-프로젝트가-사용한-코드에-대해-ai-생성물-주의">이 프로젝트가
 사용한 코드에 대해 (AI 생성물 주의)</a></li>
-<li><a href="#앞으로-공개하게-된다면-지금은-해당-없음"
-id="toc-앞으로-공개하게-된다면-지금은-해당-없음">앞으로 공개하게 된다면
-(지금은 해당 없음)</a></li>
+<li><a href="#남은-검토-사항" id="toc-남은-검토-사항">남은 검토
+사항</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1413,14 +1412,27 @@ SoDam-CCC를 설치한 뒤 <code>/sodam-ccc:install</code>을 실행하면, 재�
 <tbody>
 <tr>
 <td><strong>배포 상태</strong></td>
-<td><strong>비공개(PRIVATE) · 개발자 본인 전용.</strong> 타인에게
-배포·판매·서비스 제공을 하지 않습니다</td>
+<td><strong>비공개(PRIVATE).</strong> GitHub 저장소
+<code>sodam-ai/SoDam-CCC</code> (공개 전환 여부는 이 문서 하단 별도 안내
+참고)</td>
 </tr>
 <tr>
 <td><strong>SoDam-CCC 자체 라이선스</strong></td>
-<td><strong>미지정.</strong> 프로젝트에 별도의
-<code>LICENSE</code>·<code>NOTICE</code> 파일이 없습니다(확인 완료 —
-최상위 폴더에 존재하지 않음)</td>
+<td><strong>Apache License 2.0.</strong> 프로젝트 최상위
+<code>LICENSE</code> 파일에 공식 라이선스 본문 전체가
+들어있습니다(2026-09-01 추가)</td>
+</tr>
+<tr>
+<td><strong>저작권자 · 연도</strong></td>
+<td><code>SoDam AI Studio</code>, 2026년 (<code>LICENSE</code> 파일에
+명시)</td>
+</tr>
+<tr>
+<td><strong>NOTICE 파일</strong></td>
+<td><strong>없음(불필요).</strong> Apache License 2.0은 상위 저작물이
+NOTICE 파일을 이미 갖고 있을 때만 그 내용을 전달하도록 요구합니다. 이
+프로젝트는 외부 코드 의존성이 0개라 전달할 NOTICE 내용 자체가
+없습니다</td>
 </tr>
 <tr>
 <td><strong>외부 코드 의존성</strong></td>
@@ -1437,21 +1449,19 @@ SoDam-CCC를 설치한 뒤 <code>/sodam-ccc:install</code>을 실행하면, 재�
 </tr>
 <tr>
 <td><strong>플러그인 매니페스트의 작성자 표기</strong></td>
-<td><code>.claude-plugin/plugin.json</code>·<code>marketplace.json</code>에
-<code>"SoDam AI Studio"</code>로 표기돼 있습니다(확인된 사실). 이 이름이
-아래 “저작권자”(개발자 본인)와 같은 주체를 가리키는 개인 프로젝트
-명의인지, 별도로 정리해야 할 이름인지는 <strong>사용자가 확정할
-사항</strong>입니다(⚖️ 결정 필요)</td>
+<td><code>.claude-plugin/plugin.json</code>·<code>marketplace.json</code>의
+<code>"SoDam AI Studio"</code>는 <code>LICENSE</code>의 저작권자 표기와
+<strong>동일한 이름으로 통일</strong>돼 있습니다(확인 완료)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="라이선스-미지정이-뜻하는-것-엄격-기준">라이선스 미지정이 뜻하는
-것 (엄격 기준)</h3>
-<p>저작권법의 일반 원칙상, <strong>라이선스를 명시하지 않은 저작물은
-“모든 권리 유보”(All Rights Reserved)로 취급됩니다.</strong> 즉
-저작권자(개발자 본인) 외에는 <strong>사용·복제·수정·재배포·상업적 이용을
-허락받지 않은 상태</strong>입니다. 지금은 개발자 본인만 사용하는 비공개
-도구이므로 이 상태로 문제가 없지만, 아래 8개 항목을 명확히 밝힙니다.</p>
+<h3 id="apache-license-2.0이-실제로-허용요구하는-것-쉬운-말-요약">Apache
+License 2.0이 실제로 허용·요구하는 것 (쉬운 말 요약)</h3>
+<blockquote>
+<p>아래는 <code>LICENSE</code> 원문을 이해하기 쉽게 풀어 쓴 요약입니다.
+<strong>원문과 다르게 해석되는 부분이 있다면 항상 <code>LICENSE</code>
+원문이 우선</strong>합니다.</p>
+</blockquote>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1460,50 +1470,51 @@ SoDam-CCC를 설치한 뒤 <code>/sodam-ccc:install</code>을 실행하면, 재�
 <thead>
 <tr>
 <th>항목</th>
-<th>현재 답</th>
+<th>내용</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>저작권자</strong></td>
-<td>이 프로젝트를 만든 개발자 본인. 별도 법인·조직 명의가 아닙니다</td>
-</tr>
-<tr>
 <td><strong>사용 가능 범위</strong></td>
-<td><strong>현재는 개발자 본인만.</strong> 제3자에게 사전 허락 없는 사용
-권한이 부여되지 않습니다</td>
+<td><strong>누구나</strong> 사용·복제·수정·배포·상업적 이용이
+가능합니다</td>
 </tr>
 <tr>
 <td><strong>상업적 사용 가능 여부</strong></td>
-<td><strong>불가.</strong> 라이선스가 없는 상태이므로 어떤 형태로도
-상업적 사용(판매·유료 서비스 포함)을 허락하지 않습니다</td>
-</tr>
-<tr>
-<td><strong>금지 사항</strong></td>
-<td>사전 허락 없는 복제·재배포·재판매·2차 저작물 공개·상업적 이용 전부
-금지</td>
-</tr>
-<tr>
-<td><strong>책임 제한</strong></td>
-<td>이 도구를 사용해 발생하는 어떠한 손해(설정 오류·계정 문제·데이터
-손실 등)에 대해서도 개발자는 책임을 지지 않습니다</td>
-</tr>
-<tr>
-<td><strong>보증 없음</strong></td>
-<td>이 도구는 “있는 그대로(as-is)” 제공되며, 특정 목적에 대한 적합성이나
-오류 없음을 보증하지 않습니다</td>
-</tr>
-<tr>
-<td><strong>외부 자료 주의</strong></td>
-<td>이 프로젝트가 의존하는 각 프로그램(아래 표)은 <strong>각자 별도의
-라이선스·이용약관</strong>을 가지며, 이 문서의 내용과 무관하게 각자
-적용됩니다</td>
+<td><strong>가능합니다.</strong> 판매·유료 서비스 운영을 포함해 상업적
+이용이 허용됩니다</td>
 </tr>
 <tr>
 <td><strong>수정·포크·재배포·판매·서비스 운영·교육
 활용·납품</strong></td>
-<td><strong>전부 현재 허용되지 않습니다</strong>(라이선스 미지정 = 모든
-권리 유보)</td>
+<td><strong>전부 가능합니다.</strong> 다만 재배포할 때는 아래 조건을
+지켜야 합니다</td>
+</tr>
+<tr>
+<td><strong>재배포 시 반드시 지킬 조건</strong></td>
+<td>① <code>LICENSE</code> 사본을 함께 배포 ② 원본을 수정했다면
+수정했다는 사실을 눈에 띄게 표시 ③ 원본의 저작권·특허·상표 고지를 그대로
+유지(관련 없는 부분 제외) ④ NOTICE 파일이 있는 저작물이면 그 내용도 함께
+전달(이 프로젝트는 NOTICE가 없어 해당 없음)</td>
+</tr>
+<tr>
+<td><strong>허용되지 않는 것</strong></td>
+<td><strong>상표권은 별도입니다.</strong> “SoDam-CCC”라는 이름·상표를 이
+라이선스가 자동으로 쓸 수 있게 해주지 않습니다(아래 “상표·비공식 고지”
+참고). 특허 소송을 걸면 그 순간 특허 라이선스가 자동 종료된다는 조항도
+있습니다(9번 항목)</td>
+</tr>
+<tr>
+<td><strong>책임 제한 · 보증 없음</strong></td>
+<td>이 소프트웨어는 <strong>“있는 그대로(AS IS)”</strong> 제공되며,
+어떠한 명시적·묵시적 보증도 하지 않습니다. 사용으로 인한 손해에 대해
+저작권자는 책임지지 않습니다(<code>LICENSE</code> 7·8번 항목 요약)</td>
+</tr>
+<tr>
+<td><strong>외부 자료 주의</strong></td>
+<td>이 프로젝트가 의존하는 각 프로그램(아래 표)은 <strong>각자 별도의
+라이선스·이용약관</strong>을 가지며, <code>LICENSE</code>와 무관하게
+각자 적용됩니다</td>
 </tr>
 </tbody>
 </table>
@@ -1563,16 +1574,17 @@ id="이-도구가-의존하는-각-프로그램의-별도-약관-sodam-ccc와-�
 관계, 출처, 상업적 이용 가능 여부, 유사 저작물 침해 가능성</strong>을
 사람이 직접 확인해야 합니다(⚖️ 법무/전문가 검토 필요).</p>
 </blockquote>
-<h3 id="앞으로-공개하게-된다면-지금은-해당-없음">앞으로 공개하게 된다면
-(지금은 해당 없음)</h3>
-<p>이 프로젝트를 만약 나중에 공개 저장소로 전환하거나, 타인에게
-배포·납품·판매하게 된다면 그 시점에 <strong>반드시</strong> 아래를 다시
-진행해야 합니다 — 지금은 비공개 개인용이라 아직 발생하지 않은 일이며, 이
-문서는 그 사실을 미리 밝혀두는 것입니다. - 정식 라이선스(예: Apache
-License 2.0 등) 확정 및 <code>LICENSE</code> 파일 추가 - 저작권
-고지(NOTICE) 필요 여부 확인 - AI 생성물의 권리 관계, 상표 지시적 사용
-범위, 납품/판매 시 책임 범위에 대한 <strong>법률 전문가의 실제
-검토</strong></p>
+<h3 id="남은-검토-사항">남은 검토 사항</h3>
+<ul>
+<li><del>정식 라이선스 확정 및 <code>LICENSE</code> 파일 추가</del> —
+<strong>완료</strong> (Apache License 2.0, 2026-09-01)</li>
+<li><del>저작권 고지(NOTICE) 필요 여부 확인</del> —
+<strong>완료</strong> (외부 의존성 0개라 불필요로 확정)</li>
+<li>AI 생성물의 권리 관계(저작권·유사 저작물 침해 가능성), 납품·판매처럼
+실제 이해관계가 걸린 상황에서의 책임 범위는 <strong>여전히 법률 전문가의
+실제 검토가 필요한 사항</strong>입니다(⚖️ 법무 검토 필요) — 이 README의
+확인은 법률 자문을 대체하지 않습니다</li>
+</ul>
 <hr />
 <p>📌 이 문서는 SoDam-CCC 프로젝트의 실제 설계 문서(<code>.PRD</code>
 폴더)와 실제 스킬 코드(<code>skills/</code>·<code>data/</code> 폴더)를
