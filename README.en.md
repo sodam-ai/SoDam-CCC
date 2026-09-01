@@ -555,7 +555,7 @@ Yes. Just double-check first that your account path, user ID, or a token-shaped 
 
 | Item | Current value |
 |---|---|
-| **Distribution status** | **Private.** GitHub repository `sodam-ai/SoDam-CCC` (see the separate note at the bottom of this section for whether/when it goes public) |
+| **Distribution status** | **Public.** GitHub repository [`sodam-ai/SoDam-CCC`](https://github.com/sodam-ai/SoDam-CCC) (made public 2026-09-01). That said, this tool was originally designed as **a personal tool the developer uses to move to a new PC** — it's public for code transparency, not with any commitment to support requests or issues |
 | **SoDam-CCC's own license** | **Apache License 2.0.** The full official license text is in the `LICENSE` file at the project root (added 2026-09-01) |
 | **Copyright holder · year** | `SoDam AI Studio`, 2026 (stated in the `LICENSE` file) |
 | **NOTICE file** | **None (not required).** Apache License 2.0 only requires passing along a NOTICE file's contents when the upstream work already has one. This project has zero external dependencies, so there's no such content to pass along |
