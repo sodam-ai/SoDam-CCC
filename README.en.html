@@ -277,8 +277,13 @@
 id="toc-sodam-ccc-talk-to-your-computer-from-telegram">SoDam-CCC — Talk
 to Your Computer From Telegram</a>
 <ul>
-<li><a href="#what-is-this" id="toc-what-is-this">1. What Is
-This?</a></li>
+<li><a href="#what-is-this" id="toc-what-is-this">1. What Is This?</a>
+<ul>
+<li><a href="#what-it-can-do" id="toc-what-it-can-do">What it can
+do</a></li>
+<li><a href="#what-it-cannot-do" id="toc-what-it-cannot-do">What it
+cannot do</a></li>
+</ul></li>
 <li><a href="#table-of-contents" id="toc-table-of-contents">2. Table of
 Contents</a></li>
 <li><a href="#prerequisites-what-you-need-to-have"
@@ -292,11 +297,22 @@ Download / Installation</a></li>
 <li><a href="#quick-start-check-in-3-minutes"
 id="toc-quick-start-check-in-3-minutes">6. Quick Start (Check in 3
 Minutes)</a></li>
-<li><a href="#how-to-run-it" id="toc-how-to-run-it">7. How to Run
-It</a></li>
+<li><a href="#how-to-run-it" id="toc-how-to-run-it">7. How to Run It</a>
+<ul>
+<li><a href="#sodam-ccc-can-launch-it-for-you"
+id="toc-sodam-ccc-can-launch-it-for-you">🤖 SoDam-CCC can launch it for
+you</a></li>
+</ul></li>
 <li><a href="#how-to-use-it-what-to-text-from-your-phone"
 id="toc-how-to-use-it-what-to-text-from-your-phone">8. How to Use It
-(What to Text From Your Phone)</a></li>
+(What to Text From Your Phone)</a>
+<ul>
+<li><a href="#what-doesnt-work-by-design-not-a-bug"
+id="toc-what-doesnt-work-by-design-not-a-bug">What doesn’t work (by
+design — not a bug)</a></li>
+<li><a href="#when-it-asks-for-approval"
+id="toc-when-it-asks-for-approval">When it asks for approval</a></li>
+</ul></li>
 <li><a href="#how-it-works" id="toc-how-it-works">9. How It
 Works</a></li>
 <li><a href="#command-reference" id="toc-command-reference">10. Command
@@ -305,17 +321,108 @@ Reference</a></li>
 <li><a href="#file-document-locations"
 id="toc-file-document-locations">12. File &amp; Document
 Locations</a></li>
-<li><a href="#workflow" id="toc-workflow">13. Workflow</a></li>
-<li><a href="#architecture" id="toc-architecture">14.
-Architecture</a></li>
+<li><a href="#workflow" id="toc-workflow">13. Workflow</a>
+<ul>
+<li><a href="#core-flow" id="toc-core-flow">Core flow</a></li>
+<li><a href="#scenarios" id="toc-scenarios">Scenarios</a></li>
+<li><a
+href="#how-the-install-wizard-sorts-steps-internally-for-reference"
+id="toc-how-the-install-wizard-sorts-steps-internally-for-reference">How
+the install wizard sorts steps internally (for reference)</a></li>
+</ul></li>
+<li><a href="#architecture" id="toc-architecture">14. Architecture</a>
+<ul>
+<li><a href="#project-structure" id="toc-project-structure">Project
+structure</a></li>
+<li><a href="#trust-boundary-the-safety-lines-sodam-ccc-holds"
+id="toc-trust-boundary-the-safety-lines-sodam-ccc-holds">Trust boundary
+— the safety lines SoDam-CCC holds</a></li>
+<li><a href="#three-design-principles-details-in-section-15"
+id="toc-three-design-principles-details-in-section-15">Three design
+principles (details in section 15)</a></li>
+</ul></li>
 <li><a href="#security-data-flow" id="toc-security-data-flow">15.
-Security &amp; Data Flow</a></li>
+Security &amp; Data Flow</a>
+<ul>
+<li><a href="#where-is-my-information-stored"
+id="toc-where-is-my-information-stored">Where is my information
+stored?</a></li>
+<li><a href="#the-allowlist-approval-authority"
+id="toc-the-allowlist-approval-authority">The allowlist = approval
+authority</a></li>
+<li><a href="#three-layer-defense-output-rules"
+id="toc-three-layer-defense-output-rules">Three-layer defense (output
+rules)</a></li>
+<li><a href="#the-approval-flow-the-security-meaning-behind-section-8"
+id="toc-the-approval-flow-the-security-meaning-behind-section-8">The
+approval flow (the security meaning behind section 8)</a></li>
+<li><a href="#be-careful-with-screenshots"
+id="toc-be-careful-with-screenshots">Be careful with
+screenshots</a></li>
+<li><a href="#automatic-risk-self-checks"
+id="toc-automatic-risk-self-checks">Automatic risk self-checks</a></li>
+</ul></li>
 <li><a href="#troubleshooting" id="toc-troubleshooting">16.
-Troubleshooting</a></li>
+Troubleshooting</a>
+<ul>
+<li><a href="#the-bot-isnt-responding-at-all"
+id="toc-the-bot-isnt-responding-at-all">🔴 The bot isn’t responding at
+all</a></li>
+<li><a href="#it-looks-like-the-message-sent-but-theres-no-reply"
+id="toc-it-looks-like-the-message-sent-but-theres-no-reply">🔴 It looks
+like the message sent, but there’s no reply</a></li>
+<li><a href="#plugin-install-is-failing"
+id="toc-plugin-install-is-failing">🔴 <code>/plugin install</code> is
+failing</a></li>
+<li><a href="#the-pairing-code-never-arrives"
+id="toc-the-pairing-code-never-arrives">🟡 The pairing code never
+arrives</a></li>
+<li><a href="#it-works-in-one-folder-but-not-another"
+id="toc-it-works-in-one-folder-but-not-another">🟡 It works in one
+folder but not another</a></li>
+<li><a href="#it-worked-fine-yesterday-but-suddenly-stopped"
+id="toc-it-worked-fine-yesterday-but-suddenly-stopped">🟡 It worked fine
+yesterday, but suddenly stopped</a></li>
+<li><a href="#replies-come-back-oddly-cut-off"
+id="toc-replies-come-back-oddly-cut-off">🟢 Replies come back oddly cut
+off</a></li>
+<li><a href="#it-says-the-channel-didnt-register-after-install"
+id="toc-it-says-the-channel-didnt-register-after-install">🟢 It says the
+channel didn’t register after install</a></li>
+<li><a href="#it-didnt-understand-that-thing-from-yesterday-not-a-bug"
+id="toc-it-didnt-understand-that-thing-from-yesterday-not-a-bug">⚪ It
+didn’t understand “that thing from yesterday” — not a bug</a></li>
+<li><a href="#sending-compact-or-similar-doesnt-do-anything-not-a-bug"
+id="toc-sending-compact-or-similar-doesnt-do-anything-not-a-bug">⚪
+Sending <code>/compact</code> or similar doesn’t do anything — not a
+bug</a></li>
+<li><a href="#still-stuck" id="toc-still-stuck">Still stuck?</a></li>
+</ul></li>
 <li><a href="#faq" id="toc-faq">17. FAQ</a></li>
 <li><a href="#legal-copyright-license-commercial-use"
 id="toc-legal-copyright-license-commercial-use">18. Legal · Copyright ·
-License · Commercial Use</a></li>
+License · Commercial Use</a>
+<ul>
+<li><a href="#current-status-facts"
+id="toc-current-status-facts">Current status (facts)</a></li>
+<li><a href="#what-unspecified-license-means-strict-standard"
+id="toc-what-unspecified-license-means-strict-standard">What
+“unspecified license” means (strict standard)</a></li>
+<li><a href="#trademark-unofficial-status-notice"
+id="toc-trademark-unofficial-status-notice">Trademark &amp;
+unofficial-status notice</a></li>
+<li><a
+href="#separate-terms-for-each-dependency-independent-of-sodam-ccc-check-each-on-your-own"
+id="toc-separate-terms-for-each-dependency-independent-of-sodam-ccc-check-each-on-your-own">Separate
+terms for each dependency (independent of SoDam-CCC — check each on your
+own)</a></li>
+<li><a href="#about-the-code-used-in-this-project"
+id="toc-about-the-code-used-in-this-project">About the code used in this
+project</a></li>
+<li><a href="#if-this-is-ever-made-public-not-applicable-right-now"
+id="toc-if-this-is-ever-made-public-not-applicable-right-now">If this is
+ever made public (not applicable right now)</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -330,21 +437,23 @@ for the first time.</strong> Any technical term is explained in one
 plain sentence the first time it appears.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ <strong>An honest status note before you read further:</strong> -
+<p>✅ <strong>An honest status note, as of 2026-09-01:</strong> -
 <strong>What has actually been confirmed live on this PC</strong>: the
 full 12-step install flow (marketplace registration → plugin install →
-token registration → pairing → safety lock) has been run in a fresh
-session and confirmed working. <code>/sodam-ccc:status</code> and
-<code>/sodam-ccc:fix</code> have also been run live and confirmed
-working. - <strong>What has NOT been confirmed yet</strong>: an actual
-<strong>round trip — sending a message from the phone and receiving a
-reply</strong> — has not been confirmed end-to-end as of this writing.
-This is not a bug; it’s simply that the verification step (switching to
-a newly created bot mid-project) hasn’t finished yet. - So some “this is
-what success looks like” notes below are <strong>expected behavior based
-on design, code, and official documentation</strong>, clearly
-distinguished from “confirmed 100% identical on an actual phone screen.”
-This note will be removed once confirmed.</p>
+token registration → pairing → safety lock),
+<code>/sodam-ccc:status</code>/<code>/sodam-ccc:fix</code> working
+correctly, and <strong>an actual full round trip — a message sent from
+the phone, reaching the PC, and a reply coming back — has now been
+confirmed on screen.</strong> (“Hi” → “Hi there! We’re connected. How
+can I help?”) - Getting there involved hitting two common pitfalls (①
+the settings-folder location not matching ② the session getting stuck on
+a folder-trust prompt). Both are documented honestly, with cause and
+fix, in <a href="#16-troubleshooting">16. Troubleshooting</a> — so you
+won’t be caught off guard if you hit the same thing. - “This is what
+success looks like” notes below are no longer just expectations —
+they’re based on confirmed behavior. The one thing that hasn’t changed:
+Telegram Channels is still an official “research preview” feature and
+can still change.</p>
 </blockquote>
 <hr />
 <h2 id="what-is-this">1. What Is This?</h2>
@@ -573,10 +682,8 @@ remains.</li>
 FAQ #3</a> or <code>/sodam-ccc:fix</code>.</li>
 </ol>
 <blockquote>
-<p>⏳ As noted at the top of this document, steps 3–4 (the phone round
-trip) haven’t been confirmed end-to-end on this PC yet. Steps 1–2
-(status check, install wizard) have been run multiple times and
-confirmed working.</p>
+<p>✅ Steps 1–4 above (status check, install wizard, phone round trip)
+have all been run multiple times on this PC and confirmed working.</p>
 </blockquote>
 <hr />
 <h2 id="how-to-run-it">7. How to Run It</h2>
@@ -613,6 +720,18 @@ window it opened, and it will do so once you confirm.</p>
 <p>✅ <strong>This is what success looks like</strong> (by design): the
 screen looks like a normal Claude Code launch, with no special error
 text.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>First time running from this folder (trust
+prompt)</strong>: You may see a screen asking whether you trust this
+folder — something like “Is this a project you created or one you trust?
+❯ No, exit / Yes, I trust this folder” — and the whole window will sit
+frozen until you answer. <strong>This is not a bug — it’s Claude Code’s
+own normal safety feature</strong>, unrelated to SoDam-CCC. Press
+<strong>↓ (down arrow) to select “Yes, I trust this folder,” then
+Enter</strong> to continue. The default selection is “No, exit,” so
+pressing Enter alone (without arrowing down first) will quit — always
+arrow down first.</p>
 </blockquote>
 <blockquote>
 <p>⚠️ <strong>Turning off the PC or closing this window</strong> makes
@@ -820,10 +939,64 @@ for guidance.</p>
 </blockquote>
 <hr />
 <h2 id="changelog">11. Changelog</h2>
+<details open>
+<summary>
+<b>2026-09-01 — First-ever confirmed phone round trip (M9) + root causes
+of 2 setup pitfalls fixed + a security-check bug fixed</b>
+</summary>
+<ul>
+<li><strong>For the first time in this project’s history, a message sent
+from a phone was confirmed to reach the PC and come back as a
+reply.</strong> (“Hi” → “Hi there! We’re connected. How can I
+help?”)</li>
+<li>Found that a newly registered bot’s server was immediately shutting
+down claiming “no token” → root cause: this PC’s settings-folder
+location had changed at some point, and the token was still only saved
+at the old location — a <strong>settings-folder path mismatch</strong>.
+Fixed by re-registering the token via <code>/telegram:configure</code>
+(full cause documented in <a href="#16-troubleshooting">section
+16</a>)</li>
+<li>Found the channel window sitting frozen with no activity even though
+it looked “on” → root cause: it was waiting, unattended, at the
+<strong>“do you trust this folder?” confirmation screen</strong> that
+appears the first time Claude Code runs from a given folder (a normal
+Claude Code safety feature, not a bug). Added guidance to <a
+href="#7-how-to-run-it">section 7</a> and <a
+href="#16-troubleshooting">section 16</a></li>
+<li>Found and fixed a PowerShell pitfall in one of the security checks
+(the one counting allowed group chats): when the count was genuinely
+<code>0</code> (the safe, normal state), the check could return a blank
+value instead of the number <code>0</code> — a check-logic bug that
+could have misreported a safe state</li>
+<li>Re-verified live: allowlist size, safety-lock status, and any use of
+risky launch flags — all confirmed safe</li>
+</ul>
+</details>
 <details>
 <summary>
-<b>2026-08-21 — Added automatic channel process launch/restart and bot
-removal flow</b>
+2026-08-31 — Re-ran all 15 checks; found and corrected an earlier “stale
+process” diagnosis
+</summary>
+<ul>
+<li>Re-ran all 15 checks live. Found the “received” indicator
+(ackReaction) was already turned on, bumping progress from 9/12 to
+11/12</li>
+<li>Tried turning the channel on again and found the internal server
+never started. The earlier documented guess — “a stale leftover process”
+— turned out to be <strong>wrong as of this point</strong>: the real
+cause was that the bot itself had already been deleted for security
+reasons. Corrected the documentation to match reality</li>
+<li>Found that an item previously logged as “unconfirmed” (the feature
+that masks a token if it’s ever about to be accidentally shown on
+screen) was, in fact, already implemented in the code — confirmed by
+reading the code directly. The documentation had simply fallen behind
+the actual code</li>
+</ul>
+</details>
+<details>
+<summary>
+2026-08-21 — Added automatic channel process launch/restart and bot
+removal flow
 </summary>
 <ul>
 <li>SoDam-CCC can now <strong>launch the channel process</strong>
@@ -903,14 +1076,26 @@ and 11-symptom catalog</li>
 <tbody>
 <tr>
 <td>Telegram settings (token, allowlist, pairing state)</td>
-<td><code>&lt;your user folder&gt;\.claude\channels\telegram\</code></td>
+<td>⚠️ <strong>Can differ by PC</strong> — usually
+<code>&lt;your user folder&gt;\.claude\channels\telegram\</code>, but if
+<code>CLAUDE_CONFIG_DIR</code> (a setting that relocates Claude Code’s
+config folder) is set, as it is on this PC, it uses
+<code>channels\telegram\</code> under that location instead
+(e.g. <code>AppData\Roaming\claude-code\channels\telegram\</code>).
+<strong>Not knowing these two locations can differ caused a real,
+hours-long troubleshooting saga</strong> (see <a
+href="#16-troubleshooting">section 16</a>) — but
+<code>/sodam-ccc:status</code>/<code>/sodam-ccc:fix</code> already know
+this rule and find the right location automatically, so you never need
+to hunt for it yourself</td>
 <td>Only checks existence/pass-fail. <strong>Never opens the token file
 (<code>.env</code>) contents</strong></td>
 </tr>
 <tr>
 <td>Claude Code global settings &amp; plugin cache</td>
 <td>The <code>AppData\Roaming\claude-code\</code> folder (or
-<code>.claude</code> folder)</td>
+<code>.claude</code> folder) — one of these two, for the same reason as
+above</td>
 <td>Read-only</td>
 </tr>
 <tr>
@@ -1098,10 +1283,9 @@ structurally prevents command injection)</li>
 <h3 id="where-is-my-information-stored">Where is my information
 stored?</h3>
 <p>The bot token (the most sensitive value here) is stored <strong>only
-on your own computer</strong>
-(<code>&lt;your user folder&gt;\.claude\channels\telegram\.env</code>).
-It is never sent to an external server, and SoDam-CCC never copies it
-anywhere.</p>
+on your own computer</strong> (the exact location can vary by PC — see
+<a href="#12-file--document-locations">section 12</a>). It is never sent
+to an external server, and SoDam-CCC never copies it anywhere.</p>
 <p><strong>SoDam-CCC never opens this file’s contents.</strong> It only
 checks whether the file “exists or not” — like checking whether an
 envelope exists without ever opening it. Structurally, this means
@@ -1145,6 +1329,14 @@ there any sign of a risky launch flag (<code>--dangerously-...</code>)
 being used? (warning)</p>
 <p>SoDam-CCC <strong>never recommends or runs</strong> risky launch
 flags (such as ones that skip permission checks).</p>
+<blockquote>
+<p>✅ <strong>Re-checked live on 2026-09-01</strong>: all three
+self-checks above were re-run directly on this PC and confirmed safe
+(allowlist = 1 person, group access = 0, no sign of risky launch flags).
+Along the way, a small pitfall was found and fixed in the “count of
+allowed group chats” check itself — it could show a blank value instead
+of <code>0</code> for the safe, normal state.</p>
+</blockquote>
 <hr />
 <h2 id="troubleshooting">16. Troubleshooting</h2>
 <p><code>/sodam-ccc:fix</code> checks and guides you automatically, but
@@ -1159,6 +1351,30 @@ command in <a href="#7-how-to-run-it">section 7</a>. ② The Claude Code
 session itself is off → start a session (both the PC and the session
 need to be running). ③ The plugin isn’t installed yet. ④ The token isn’t
 registered yet.</p>
+<p><strong>⑤ The channel window is open but it still doesn’t work — the
+bot token may have been invalidated</strong>: this happens if the bot
+was deleted or reissued in BotFather. Open your conversation with
+BotFather in Telegram and check whether the bot still exists. If it’s
+gone or doesn’t match, re-register a fresh token with the command in <a
+href="#10-command-reference">section 10</a>.</p>
+<p><strong>⑥ The server shuts down the moment it starts —
+settings-folder path mismatch</strong> (an actual case hit on
+2026-09-01): even if you already registered a token, if this PC’s Claude
+Code settings-folder location ever changed, the token may only exist at
+the <strong>old (wrong) location</strong>. Re-run the token-registration
+command in <a href="#10-command-reference">section 10</a> once more — it
+will save the token to the correct location for right now. Still stuck?
+Tell <code>/sodam-ccc:fix</code> — it can compare both locations
+directly and guide you through moving the old file over.</p>
+<p><strong>⑦ The window you used to turn the channel on seems frozen —
+the “do you trust this folder?” screen</strong> (an actual case hit on
+2026-09-01): the first time Claude Code runs from that folder, it shows
+a trust-confirmation screen and the entire window freezes until you
+answer (not a bug — Claude Code’s own normal safety feature). Open that
+window directly and check whether it’s showing something like “Is this a
+project you created or one you trust?” If so, follow <a
+href="#7-how-to-run-it">section 7</a>: press ↓ (down arrow) to select
+“Yes, I trust this folder,” then Enter, to continue.</p>
 <h3 id="it-looks-like-the-message-sent-but-theres-no-reply">🔴 It looks
 like the message sent, but there’s no reply</h3>
 <p>The most common reason is <strong>an approval request is waiting on

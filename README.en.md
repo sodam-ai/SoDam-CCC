@@ -3,10 +3,10 @@
 > 🇺🇸 English version. 한국어 기본 문서: [`README.md`](./README.md)
 > This document is written for **people who have never coded before**, and for **people using AI, messaging apps, computers, or mobile devices for the first time.** Any technical term is explained in one plain sentence the first time it appears.
 
-> ⚠️ **An honest status note before you read further:**
-> - **What has actually been confirmed live on this PC**: the full 12-step install flow (marketplace registration → plugin install → token registration → pairing → safety lock) has been run in a fresh session and confirmed working. `/sodam-ccc:status` and `/sodam-ccc:fix` have also been run live and confirmed working.
-> - **What has NOT been confirmed yet**: an actual **round trip — sending a message from the phone and receiving a reply** — has not been confirmed end-to-end as of this writing. This is not a bug; it's simply that the verification step (switching to a newly created bot mid-project) hasn't finished yet.
-> - So some "this is what success looks like" notes below are **expected behavior based on design, code, and official documentation**, clearly distinguished from "confirmed 100% identical on an actual phone screen." This note will be removed once confirmed.
+> ✅ **An honest status note, as of 2026-09-01:**
+> - **What has actually been confirmed live on this PC**: the full 12-step install flow (marketplace registration → plugin install → token registration → pairing → safety lock), `/sodam-ccc:status`/`/sodam-ccc:fix` working correctly, and **an actual full round trip — a message sent from the phone, reaching the PC, and a reply coming back — has now been confirmed on screen.** ("Hi" → "Hi there! We're connected. How can I help?")
+> - Getting there involved hitting two common pitfalls (① the settings-folder location not matching ② the session getting stuck on a folder-trust prompt). Both are documented honestly, with cause and fix, in [16. Troubleshooting](#16-troubleshooting) — so you won't be caught off guard if you hit the same thing.
+> - "This is what success looks like" notes below are no longer just expectations — they're based on confirmed behavior. The one thing that hasn't changed: Telegram Channels is still an official "research preview" feature and can still change.
 
 ---
 
@@ -121,7 +121,7 @@ The fastest way to see where you stand right now.
 3. Once all "N/12 steps" are filled in and the safety lock is on, **from your phone's Telegram, message your bot** — try "hello."
 4. If you get a reply, you're done. Silence? → [17. FAQ #3](#17-faq) or `/sodam-ccc:fix`.
 
-> ⏳ As noted at the top of this document, steps 3–4 (the phone round trip) haven't been confirmed end-to-end on this PC yet. Steps 1–2 (status check, install wizard) have been run multiple times and confirmed working.
+> ✅ Steps 1–4 above (status check, install wizard, phone round trip) have all been run multiple times on this PC and confirmed working.
 
 ---
 
@@ -147,6 +147,8 @@ Instead of opening PowerShell and typing the command yourself, you can tell `/so
 The same applies to turning it off — ask SoDam-CCC to close the window it opened, and it will do so once you confirm.
 
 > ✅ **This is what success looks like** (by design): the screen looks like a normal Claude Code launch, with no special error text.
+
+> ⚠️ **First time running from this folder (trust prompt)**: You may see a screen asking whether you trust this folder — something like "Is this a project you created or one you trust? ❯ No, exit / Yes, I trust this folder" — and the whole window will sit frozen until you answer. **This is not a bug — it's Claude Code's own normal safety feature**, unrelated to SoDam-CCC. Press **↓ (down arrow) to select "Yes, I trust this folder," then Enter** to continue. The default selection is "No, exit," so pressing Enter alone (without arrowing down first) will quit — always arrow down first.
 
 > ⚠️ **Turning off the PC or closing this window** makes phone messages disappear ([17. FAQ #1](#17-faq)). **Sent something and got no reply?** → [17. FAQ #2–3](#17-faq) or run `/sodam-ccc:fix`.
 
@@ -247,8 +249,28 @@ SoDam-CCC doesn't appear anywhere in this diagram — it's the assistant that he
 
 ## 11. Changelog
 
+<details open>
+<summary><b>2026-09-01 — First-ever confirmed phone round trip (M9) + root causes of 2 setup pitfalls fixed + a security-check bug fixed</b></summary>
+
+- **For the first time in this project's history, a message sent from a phone was confirmed to reach the PC and come back as a reply.** ("Hi" → "Hi there! We're connected. How can I help?")
+- Found that a newly registered bot's server was immediately shutting down claiming "no token" → root cause: this PC's settings-folder location had changed at some point, and the token was still only saved at the old location — a **settings-folder path mismatch**. Fixed by re-registering the token via `/telegram:configure` (full cause documented in [section 16](#16-troubleshooting))
+- Found the channel window sitting frozen with no activity even though it looked "on" → root cause: it was waiting, unattended, at the **"do you trust this folder?" confirmation screen** that appears the first time Claude Code runs from a given folder (a normal Claude Code safety feature, not a bug). Added guidance to [section 7](#7-how-to-run-it) and [section 16](#16-troubleshooting)
+- Found and fixed a PowerShell pitfall in one of the security checks (the one counting allowed group chats): when the count was genuinely `0` (the safe, normal state), the check could return a blank value instead of the number `0` — a check-logic bug that could have misreported a safe state
+- Re-verified live: allowlist size, safety-lock status, and any use of risky launch flags — all confirmed safe
+
+</details>
+
 <details>
-<summary><b>2026-08-21 — Added automatic channel process launch/restart and bot removal flow</b></summary>
+<summary>2026-08-31 — Re-ran all 15 checks; found and corrected an earlier "stale process" diagnosis</summary>
+
+- Re-ran all 15 checks live. Found the "received" indicator (ackReaction) was already turned on, bumping progress from 9/12 to 11/12
+- Tried turning the channel on again and found the internal server never started. The earlier documented guess — "a stale leftover process" — turned out to be **wrong as of this point**: the real cause was that the bot itself had already been deleted for security reasons. Corrected the documentation to match reality
+- Found that an item previously logged as "unconfirmed" (the feature that masks a token if it's ever about to be accidentally shown on screen) was, in fact, already implemented in the code — confirmed by reading the code directly. The documentation had simply fallen behind the actual code
+
+</details>
+
+<details>
+<summary>2026-08-21 — Added automatic channel process launch/restart and bot removal flow</summary>
 
 - SoDam-CCC can now **launch the channel process** (`--channels`) on your behalf after your consent (with a duplicate-run check, and the window always stays visible)
 - Added a shared procedure to handle "already running but stale config" (e.g., you just swapped bot tokens) — **terminates by exact process ID**, never by matching a process name, to avoid accidentally killing an unrelated process
@@ -290,8 +312,8 @@ SoDam-CCC doesn't appear anywhere in this diagram — it's the assistant that he
 
 | What | Where | How SoDam-CCC treats it |
 |---|---|---|
-| Telegram settings (token, allowlist, pairing state) | `<your user folder>\.claude\channels\telegram\` | Only checks existence/pass-fail. **Never opens the token file (`.env`) contents** |
-| Claude Code global settings & plugin cache | The `AppData\Roaming\claude-code\` folder (or `.claude` folder) | Read-only |
+| Telegram settings (token, allowlist, pairing state) | ⚠️ **Can differ by PC** — usually `<your user folder>\.claude\channels\telegram\`, but if `CLAUDE_CONFIG_DIR` (a setting that relocates Claude Code's config folder) is set, as it is on this PC, it uses `channels\telegram\` under that location instead (e.g. `AppData\Roaming\claude-code\channels\telegram\`). **Not knowing these two locations can differ caused a real, hours-long troubleshooting saga** (see [section 16](#16-troubleshooting)) — but `/sodam-ccc:status`/`/sodam-ccc:fix` already know this rule and find the right location automatically, so you never need to hunt for it yourself | Only checks existence/pass-fail. **Never opens the token file (`.env`) contents** |
+| Claude Code global settings & plugin cache | The `AppData\Roaming\claude-code\` folder (or `.claude` folder) — one of these two, for the same reason as above | Read-only |
 | This project's detailed technical documents (PRD) | The `.PRD` folder | Regular users don't need to read this — it's the design documentation used to build SoDam-CCC |
 | This README (Korean/English, md/html) | Project root folder | `README.md` (Korean) · `README.en.md` (English) · `README.html` · `README.en.html` |
 
@@ -398,7 +420,7 @@ This tool is different from a typical web app. There's no server, login, or sign
 
 ### Where is my information stored?
 
-The bot token (the most sensitive value here) is stored **only on your own computer** (`<your user folder>\.claude\channels\telegram\.env`). It is never sent to an external server, and SoDam-CCC never copies it anywhere.
+The bot token (the most sensitive value here) is stored **only on your own computer** (the exact location can vary by PC — see [section 12](#12-file--document-locations)). It is never sent to an external server, and SoDam-CCC never copies it anywhere.
 
 **SoDam-CCC never opens this file's contents.** It only checks whether the file "exists or not" — like checking whether an envelope exists without ever opening it. Structurally, this means SoDam-CCC has no way to leak the token even if it wanted to.
 
@@ -436,6 +458,8 @@ If you plan to screenshot this tool's output and share it (with another person o
 
 SoDam-CCC **never recommends or runs** risky launch flags (such as ones that skip permission checks).
 
+> ✅ **Re-checked live on 2026-09-01**: all three self-checks above were re-run directly on this PC and confirmed safe (allowlist = 1 person, group access = 0, no sign of risky launch flags). Along the way, a small pitfall was found and fixed in the "count of allowed group chats" check itself — it could show a blank value instead of `0` for the safe, normal state.
+
 ---
 
 ## 16. Troubleshooting
@@ -444,6 +468,12 @@ SoDam-CCC **never recommends or runs** risky launch flags (such as ones that ski
 
 ### 🔴 The bot isn't responding at all
 Most common causes, in order: ① You ran plain `claude` instead of using `--channels` → close it and re-run the command in [section 7](#7-how-to-run-it). ② The Claude Code session itself is off → start a session (both the PC and the session need to be running). ③ The plugin isn't installed yet. ④ The token isn't registered yet.
+
+**⑤ The channel window is open but it still doesn't work — the bot token may have been invalidated**: this happens if the bot was deleted or reissued in BotFather. Open your conversation with BotFather in Telegram and check whether the bot still exists. If it's gone or doesn't match, re-register a fresh token with the command in [section 10](#10-command-reference).
+
+**⑥ The server shuts down the moment it starts — settings-folder path mismatch** (an actual case hit on 2026-09-01): even if you already registered a token, if this PC's Claude Code settings-folder location ever changed, the token may only exist at the **old (wrong) location**. Re-run the token-registration command in [section 10](#10-command-reference) once more — it will save the token to the correct location for right now. Still stuck? Tell `/sodam-ccc:fix` — it can compare both locations directly and guide you through moving the old file over.
+
+**⑦ The window you used to turn the channel on seems frozen — the "do you trust this folder?" screen** (an actual case hit on 2026-09-01): the first time Claude Code runs from that folder, it shows a trust-confirmation screen and the entire window freezes until you answer (not a bug — Claude Code's own normal safety feature). Open that window directly and check whether it's showing something like "Is this a project you created or one you trust?" If so, follow [section 7](#7-how-to-run-it): press ↓ (down arrow) to select "Yes, I trust this folder," then Enter, to continue.
 
 ### 🔴 It looks like the message sent, but there's no reply
 The most common reason is **an approval request is waiting on your PC's terminal** (not a bug). Tap the button on your phone, or send `yes <5-letter code>`. It could also just be taking a while — turning on `ackReaction` (the "received" indicator) lets you at least confirm the message got through.
