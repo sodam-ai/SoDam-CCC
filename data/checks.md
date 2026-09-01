@@ -46,7 +46,7 @@
 | ID | 검사 | 방법 | 통과조건 | 실패 시 | 등급 |
 |---|---|---|---|---|---|
 | CHK-13 | 허용목록 인원 = 1명 | `access.json` → `allowFrom.Count` (값 자체는 출력 금지, **개수만**) | = 1 | **0명**: 아직 페어링 전 — 정상적인 초기 상태이며 보안 경고 아님(CHK-07이 이미 이 상태를 다룸). **2명 이상**: 경고 — 허용된 전원이 `Bash`·`Write` 승인 가능 | ⚠️(2명 이상일 때만) |
-| CHK-15 | 그룹 허용 여부 | `access.json` → `groups` 객체의 **속성 개수**(`.PSObject.Properties.Count` — 배열 아님, 객체) | = 0 | 경고 | ⚠️ |
+| CHK-15 | 그룹 허용 여부 | `access.json` → `groups` 객체의 **속성 개수**(`@($access.groups.PSObject.Properties).Count` — 🔧 2026-09-01 실측 정정: `@()`로 감싸지 않고 `.PSObject.Properties.Count`만 쓰면, `groups`가 완전히 비어있을 때(`{}`) PowerShell 5.1이 `0`이 아니라 **빈 값(공백)**을 돌려준다(이 PC에서 직접 재현 확인 — `[PSCustomObject]@{}.PSObject.Properties.Count`가 빈 값). 값이 있을 때는 정상적으로 개수가 나와 지금까지 못 잡혔던 함정. `@()`로 감싸면 비어있어도 항상 정수 `0`이 나와 판정이 안정됨) | = 0 | 경고 | ⚠️ |
 | CHK-16 | 위험 플래그 사용 흔적 | `Get-CimInstance Win32_Process`를 **`Name='claude.exe'`로 좁혀서** `CommandLine`에 `--dangerously-`로 시작하는 항목이 있는지 확인 (🔧 2026-08-21 실측 정정: 범위를 안 좁히면 검사를 실행하는 PowerShell 자신의 명령어 문자열이 걸려 오탐 발생 — 실제 발생 확인) | 없음 | 경고 | ⚠️ |
 
 > CHK-14는 CHK-08과 중복이라 삭제됨(번호 재사용 안 함). **총 15개**.
