@@ -79,12 +79,14 @@ Channels는 공식 문서가 *"`--channels` 명령 형식과 프로토콜 규약
 ## 3. 파일 경로
 
 > 🔧 **2026-08-09 실측 확정 — 설정 루트가 두 곳으로 갈립니다.** §7-B 가 "구현 시 두 경로 모두 확인"이라고 경고했던 것이 **사실로 확인**됐습니다. 하나가 아니라 **역할별로 고정된 두 루트**입니다.
+>
+> ⚠️ **2026-09-01 정정 — "채널 루트는 예외적으로 항상 고정"은 더 이상 사실이 아니다.** 위 2026-08-09 실측 당시엔 이 PC에 `CLAUDE_CONFIG_DIR`이 아직 없어서 우연히 두 루트가 같은 값처럼 보였을 뿐, 실제로는 **공식 telegram 플러그인 코드(`skills/configure/SKILL.md`·`server.ts`)가 채널 루트도 설정 루트와 똑같이 `CLAUDE_CONFIG_DIR` 우선으로 계산**한다(`${CLAUDE_CONFIG_DIR ?? $HOME/.claude}/channels/telegram` — 소스 직접 확인). 2026-08-24 이 PC에 `CLAUDE_CONFIG_DIR`이 전역 설정되면서 두 루트가 실제로 갈라졌고, 이 문서가 그 변화를 반영 못 해 CHK-06·CHK-09 등이 8/24 이후 이 PC에서 조용히 틀린 위치를 봐왔다(server.ts 직접 재현 실행으로 확정, `data/checks.md` 동시 수정).
 
 ```
-채널 루트   = $env:USERPROFILE\.claude\channels\        ← 봇 설정·토큰·페어링 (예외적으로 여기)
+채널 루트   = $env:CLAUDE_CONFIG_DIR\channels\           ← 봇 설정·토큰·페어링 (설정 루트와 동일 규칙)
 설정 루트   = $env:CLAUDE_CONFIG_DIR                     ← 플러그인 캐시·설치기록·전역 settings.json
              (이 PC 실측값 = C:\Users\<사용자>\AppData\Roaming\claude-code)
-             CLAUDE_CONFIG_DIR 미설정 환경이면 $env:USERPROFILE\.claude 로 대체
+             CLAUDE_CONFIG_DIR 미설정 환경이면 두 루트 모두 $env:USERPROFILE\.claude 로 대체
 ```
 
 | 대상 | 경로 | CCC 취급 |
@@ -198,7 +200,7 @@ Channels는 공식 문서가 *"`--channels` 명령 형식과 프로토콜 규약
 |---|---|
 | U2 | 설치 스코프 = `<설정 루트>\plugins\installed_plugins.json` → `.plugins["telegram@claude-plugins-official"][0].scope` = `"user"` |
 | U3 | `Get-CimInstance Win32_Process -Filter "Name='claude.exe'"` 로 `CommandLine` 읽힘(188개 프로세스 전수 실측, **관리자 권한 불필요**). 단 CHK-09 자체는 이 방법을 안 씀(→ CHK-09 정정 참조, `claude` 프로세스엔 `--channels` 인자가 안 남음) |
-| U7 | `CLAUDE_CONFIG_DIR` 환경변수가 설정 루트를 결정(이 PC=`AppData\Roaming\claude-code`). **단 채널 폴더는 예외적으로 항상 `~/.claude/channels/`** — §3 경로표 참조 |
+| U7 | `CLAUDE_CONFIG_DIR` 환경변수가 설정 루트를 결정(이 PC=`AppData\Roaming\claude-code`). ~~단 채널 폴더는 예외적으로 항상 `~/.claude/channels/`~~ **2026-09-01 정정: 예외 아님 — 채널 폴더도 같은 규칙(CLAUDE_CONFIG_DIR 우선)** — §3 경로표 참조 |
 | U8 | `~/.claude/skills/aurakit/hooks/security-scan.js` + `lib/common.js` 의 `SECRET_PATTERNS` 재사용 가능(정규식 패턴 목록 방식) |
 | U10 | `access.json` 스키마 = `dmPolicy`(문자열)·`allowFrom`(배열)·`groups`(객체)·`pending`(객체) — §3 스키마 블록 참조 |
 | U11 | `Get-CimInstance Win32_Process` 의 `CommandLine` 에서 `-like "*--dangerously*"` 로 검색(이 PC 실측 0건) |
